@@ -177,5 +177,86 @@ for i in range(20):
     if i>10:
         break
 
+##함수
+number = 10
+result1 = number *2
+result2=result1 **3
+reuslt3=result2 **10
+print(reuslt3)
+
+def calculate(number):
+    result1 = number *2
+    result2=result1 **3
+    reuslt3=result2 **10
+    return reuslt3 # 반환겂이 없는 함수호출은 None을 리턴한다.
+
+print(calculate(10))
+
+
+def myFn1():
+    result = 1+2
+
+
+def myFn2():
+    return 10
+
+
+print(myFn1())
+print(myFn2())
+ 
+
+
+
+## 상수
+SIZE = 10
+SIZE = 9 # 변경할 수는 있으나 대문자로 쓰여져 있기 때문에 변경하지 말아야지..
+
+def Fn2(*colors):
+    for color in colors:
+        print(color)
+
+print(Fn2('black'))
+print('------------')
+print(Fn2('black','white'))
+print('------------')
+print(Fn2('black','white','red'))
+
+
+
+def mysum1 (x,y):
+    return x+y
+mysum2 = lambda x,y: x+y
+
+
+
+print(mysum1(1,2))
+print('=======')
+print(mysum2(1,2))
+
+mysum3 = lambda *args: sum(args)
+print(mysum3(1,2,3,4,5,5))
+
+
+
+def myfn(fn,x,y):
+    return fn(x,y)
+
+print(myfn(mysum1,10,20))
+print(myfn(mysum2,10,20))
+print(myfn(lambda x,y: x*y,10,20))
+
+
+
+
+def base_calculator(base):
+    wrap = lambda x,y: base+x+y
+    return wrap
+
+calc_10 = base_calculator(10)
+print(calc_10)
+
+print(calc_10(1,2))
+
+
 
 
