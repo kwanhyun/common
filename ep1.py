@@ -257,6 +257,51 @@ print(calc_10)
 
 print(calc_10(1,2))
 
+#객체는 함수와 데이터의 조합
+#class 사용자 정의 데이터 타입
+#Class 정의 시 CamelCase로 선언
+
+#python New Style Class 
 
 
 
+
+from math import sqrt
+circle1 = {'x':10, 'y':20, 'radius':3}
+circle2 = {'x':100, 'y':-40, 'radius':10}
+
+
+def get_area(circle):
+    return circle['radius']**2
+
+
+def get_distance(circle1, circle2):
+    return sqrt((circle1['x'] - circle2['x']) ** 2 + (circle1['y'] - circle2['y']) ** 2) - (circle1['radius'] + circle2['radius'])
+
+
+print(get_area(circle1)) ## item 전체 리스트를 넘겨주고
+#내부적으로 필요한 내용만 사용
+
+
+print(get_area(circle2))
+print(get_distance(circle1,circle2))
+
+class Circle(object):
+    def __init__(self, x, y,radius):
+        self.x=x
+        self.y=y
+        self.radius=radius
+    def area(self):
+        return self.radius **2
+    def distance(self, other):
+        return sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2) - (self.radius + other.radius)
+
+circle1 = Circle(10,20,3)
+print(circle1.area())
+
+
+circle2 = Circle(100,-40,10)
+print(circle2.area())
+
+
+print(circle1.distance(circle2))
