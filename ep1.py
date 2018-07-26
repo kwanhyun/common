@@ -305,3 +305,100 @@ print(circle2.area())
 
 
 print(circle1.distance(circle2))
+
+'''
+class Person(object):
+    def __init__(self, name, age, region):
+        self.name=name
+        self.age=age
+        self.region=region
+    
+    def day_hello(self):
+        print('안녕하세요.{}님. {}에서 오셨군요'.format(self.name,self.region))
+    
+    def move_to(self, region):
+        print('{}에서 {}로 이사합니다.'.format(self.region,region))
+        self.region=region
+
+
+tom=Person('Tom',10,'Seoul')
+tom.day_hello()
+print(tom.name) #밖에서접근하는방법
+Steve=Person('Steve',10,'Pusan')
+Steve.day_hello()
+gongyou=Person('공유',37,'도깨비나라')
+gongyou.day_hello()
+
+print('==========')
+
+gongyou.move_to('Canada')
+gongyou.day_hello()
+'''
+
+'''
+class Dog(object):
+    tricks = [] # 인스턴스 변수가 아니라 클래스 변수임
+
+    def add_trick(self,trick):
+        self.tricks.append(trick)
+
+
+dog1 = Dog()
+dog1.add_trick('roll over')
+
+dog2 = Dog()
+dog2.add_trick('play over')
+
+print(dog1.tricks)
+print(dog2.tricks)
+'''
+
+
+class Dog(object):
+    def __init__(self):
+        self.tricks = [] # 이렇게 함수 형식으로 선언하면 인스턴스 변수로 사용가능
+
+    def add_trick(self,trick):
+        self.tricks.append(trick)
+
+
+dog1 = Dog()
+dog1.add_trick('roll over')
+
+dog2 = Dog()
+dog2.add_trick('play over')
+
+print(dog1.tricks)
+print(dog2.tricks)
+
+
+### 파이썬에서는 접근 제한자를 지원하지 않는다. 마음에 듬,, 모두 Public으로 사용 그러나...
+### public, private, protected
+
+
+class Person(object):
+    def __init__(self, name):
+        self.__name=name ## private 접근 방법
+
+    def day_hello(self):
+        print('안녕 {}'.format(self.__name))
+
+
+tom = Person('tom')
+tom.day_hello()
+
+# tom.__name --> 에러 발생.. 이유로는 __name 즉 Private 으로 정의 되었기 때문에
+# 외부에서 호출 불가능.. 그러나
+
+print(tom._Person__name)
+
+
+
+
+
+
+
+
+
+
+
