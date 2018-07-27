@@ -393,8 +393,102 @@ tom.day_hello()
 print(tom._Person__name)
 
 
+#호출가능한 객체
+def mysum(x,y):
+    return x+y
+
+print(mysum(1,2))
 
 
+class Calulator(object):
+    def __init__(self, base):
+        self.base=base
+
+
+
+class Calulator2(object):
+    def __init__(self, base):
+        self.base=base
+    def mysum(self,x,y):
+        return self.base + x+ y
+
+calculator2 = Calulator2(10)
+print(calculator2.mysum(1,2))
+#print(calculator2(1,2)) # 에러 발생
+
+class Calulator3(object):
+    def __init__(self, base):
+        self.base=base
+    def __call__(self,x,y):
+        return self.base + x+ y
+
+calcultor3 = Calulator3(10)
+print(calcultor3.__call__(1,2))
+print('======')
+print(calcultor3(1,2))## 호출가능 실제로 calculator.__call__(1,2)을 호출할 수 있다.
+
+import re
+import requests
+from bs4 import BeautifulSoup
+from collections import Counter
+
+def work_count(url):
+    html = requests.get(url).text
+
+    soup= BeautifulSoup(html,'html.parser')
+    words = soup.text.split()
+    counter = Counter(words)
+
+    return counter
+
+def korean_work_count(url):
+    html = requests.get(url).text
+
+    soup= BeautifulSoup(html,'html.parser')
+    words = soup.text.split()
+
+    words = [word for word in words if re.match(r'^[ㄱ-힣]+$',word)]
+
+    counter = Counter(words)
+
+    return counter
+
+
+
+#print(work_count('https://nomade.kr/vod/'))
+#print(korean_work_count('https://nomade.kr/vod/'))
+
+
+
+class WorldCount(object):
+    def get_text(self,url):
+        html = requests.get(url).text
+        soup= BeautifulSoup(html,'html.parser')
+        return soup.text
+
+    def get_list(self,text):
+        return text.split()
+
+    def __call__(self,url):
+        text = self.get_text(url)
+        words = self.get_list(text)
+        counter = Counter(words)
+        return counter
+
+
+word_count = WorldCount()
+print(word_count('https://nomade.kr/vod/'))
+
+
+class KoreanWordCount(WorldCount):
+    def get_list(self,text): #상속받은 함수를 재정의
+        words = text.split()
+        return [word for word in words if re.match(r'^[ㄱ-힣]+$',word)]
+
+
+
+korean_work_count = KoreanWordCount()
+print(korean_work_count('https://nomade.kr/vod/'))
 
 
 
