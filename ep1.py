@@ -390,7 +390,7 @@ tom.day_hello()
 # tom.__name --> 에러 발생.. 이유로는 __name 즉 Private 으로 정의 되었기 때문에
 # 외부에서 호출 불가능.. 그러나
 
-print(tom._Person__name)
+#print(tom._Person__name)
 
 
 #호출가능한 객체
@@ -546,4 +546,79 @@ myrange = MyRange(0,3)
 for i in myrange:
     print(i)
 
-    
+
+
+#python3에서는 range만 사용됨 xrange 없음
+print(range(10))
+
+print(list(range(10)))
+'''
+range + 메모리 공장에서 10만개 다 만든 후 출하
+xrange + cpu 만들면서 출하
+'''
+
+"""
+Sub routine: 진입점이 하나 (일반적인 함수)
+Co Routine: 진입적이 여럿 (병렬 수행)
+"""
+
+#sub routine
+def mysum30(x,y):
+    base=10
+    base += (x+y)
+    return base
+# 매번 함수를 실행할 때마다 초기화 된다. 중간에 멈출 수 없다
+
+# co routine
+def to_3():
+    yield 1
+    yield 2
+    yield 3
+
+generatoe_obj = to_3() # generator obj 생성
+print(next (generatoe_obj)) # yield 1에서 멈춘 상태
+print(next (generatoe_obj)) # yield 2에서 멈춘 상태
+print(next (generatoe_obj)) # yield 3에서 멈춘 상태
+#print(next (generatoe_obj)) # yield 3에서 멈춘 상태
+
+# co routine의 경우 각 단계 마다 멈출 수 있고, 병렬 처리가 가능한다.
+
+## generator에서 return문을 쓰더라도
+def to_4():
+    yield 1
+    yield 2
+    yield 3
+    return 10 # 함수의 루팅만 종료되었을 뿐 값이 사용되지는 않음
+    yield 4
+
+generator_test = to_4()
+#print(next(generator_test))
+#print(next(generator_test))
+#print(next(generator_test))
+#print(next(generator_test))
+#print(next(generator_test))
+
+
+def myxrange (start, end):
+    while start < end:
+        yield start
+        start +=1
+
+
+selfmyxrane = myxrange(1,10)
+print("myxrange 예제")
+#print(next(selfmyxrane))
+for i in selfmyxrane:
+    print(i)
+
+
+# generator의 경우 next 혹은 for in 을 통해서 인자 호출이 가능하다.
+# 슬라이싱은 리스트와 튜플에서만 된다.
+
+# generator compe () 제너레이터 : 그때 그때 생산
+# list compe [] 리스트 : 모든 값을 한 번에 생산
+# dick compe {key:value} 사전 : 모든 값을 한 번에 생산
+# set compe {} 집합 : 모든 값을 한 번에 생산
+# tuple comprehension 은 없음!!!!!!!!!!!!!! : 모든 값을 한 번에 생산
+
+
