@@ -476,8 +476,8 @@ class WorldCount(object):
         return counter
 
 
-word_count = WorldCount()
-print(word_count('https://nomade.kr/vod/'))
+#word_count = WorldCount()
+#print(word_count('https://nomade.kr/vod/'))
 
 
 class KoreanWordCount(WorldCount):
@@ -487,12 +487,63 @@ class KoreanWordCount(WorldCount):
 
 
 
-korean_work_count = KoreanWordCount()
-print(korean_work_count('https://nomade.kr/vod/'))
+#korean_work_count = KoreanWordCount()
+#print(korean_work_count('https://nomade.kr/vod/'))
 
 
 
+#순회가능한 객체
+'''
+iterable: for문
+container: list문
+'''
+
+for ch in "hello world":
+    print(ch)
+
+for i in [1,2,3]:
+    print(i,i**2)
+
+
+mydic = {'a':1,'b':2}
+
+for a in mydic:
+    print(a)
+
+for a in mydic.keys():
+    print(a)
+
+for a in mydic.values():
+    print(a)
+
+for a in mydic.items():
+    print(a)
+
+
+for a,b in mydic.items(): #(a,b)도 가능
+    print(a,b)
+
+
+##클래스 인스턴스 , 순회 가능한 객체
+class MyRange(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.start >= self.end:
+            raise StopIteration
+        value = self.start
+        self.start +=1
+        return value
 
 
 
+print("===============")
 
+myrange = MyRange(0,3)
+for i in myrange:
+    print(i)
+
+    
