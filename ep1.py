@@ -375,7 +375,7 @@ print(dog2.tricks)
 ### 파이썬에서는 접근 제한자를 지원하지 않는다. 마음에 듬,, 모두 Public으로 사용 그러나...
 ### public, private, protected
 
-
+'''
 class Person(object):
     def __init__(self, name):
         self.__name=name ## private 접근 방법
@@ -386,7 +386,7 @@ class Person(object):
 
 tom = Person('tom')
 tom.day_hello()
-
+'''
 # tom.__name --> 에러 발생.. 이유로는 __name 즉 Private 으로 정의 되었기 때문에
 # 외부에서 호출 불가능.. 그러나
 
@@ -622,3 +622,77 @@ for i in selfmyxrane:
 # tuple comprehension 은 없음!!!!!!!!!!!!!! : 모든 값을 한 번에 생산
 
 
+
+#빌트인 함수 정렬
+#sorted : 정렬된 리스트 반환
+ 
+print(sorted([19,25,32,45], reverse = True))
+
+def sort_fn(value):
+    return value%10
+
+print(sorted([19,25,32,45], key=sort_fn))
+print(sorted([19,25,32,45], key=sort_fn,reverse=True))
+print(sorted([19,25,32,45], key=lambda value:value%10,reverse=True))
+
+def judge_fn(value):
+    return value % 2 ==0
+
+
+iterator = filter(judge_fn,[1,2,3,4,5,6])
+
+for i in iterator:
+    print(i)
+
+print(iterator)
+print('\\\\\\\\\\\\\\')
+print(list(iterator)) # 앞서 for문에서 값을 이미 꺼냈기 때문에 더 이상 값이 나오지 않음
+
+##map 함수 : 값을 변환하는 함수
+
+def power_fn(value):
+    return value**2
+
+iterator2 = map(power_fn,[1,2,3,4,5,6])
+
+
+print(iterator2)
+for i in iterator2:
+    print(i)
+print('\\\\\\\\\\\\\\')
+## filter 와 map 을 엮기
+iterator= map(lambda i: i**2,filter(lambda i: i%2==0,[1,2,3,4,5,6,7,8,9,10]))
+
+## 위에 걸 풀어서 쓰면
+iter_fileter = filter(lambda i: i%2==0,[1,2,3,4,5,6,7,8,9,10])
+iter_map = map(lambda i: i**2, iter_fileter)
+
+
+'''
+for i in iterator:
+    print(i)
+
+'''
+print(list(iterator))
+
+
+print(max([-1,1,2,3,4,-5],key=lambda i: abs(i)))
+print(min([-1,1,2,3,4,5]))
+
+
+print(max([],default=0)) # 디폴트 인자는 꼭 지정한다.
+
+
+##리스트의 sort와 sorted의 차이는 list.sort의 경우 원본 데이터의 정렬을 변경하고, sorted는 원본 데이터는 변경하지 않으면서 결과값만 정렬한다.
+
+
+mylist = [10,9,1,2,-1]
+print(sorted(mylist)) # 원본 데이터 변경 없음
+print(mylist)
+ 
+print(mylist.sort)
+for i in mylist:
+    print(i)
+
+print('^^^^^^^^^')
+print(mylist)
