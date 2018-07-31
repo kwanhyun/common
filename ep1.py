@@ -696,3 +696,38 @@ for i in mylist:
 
 print('^^^^^^^^^')
 print(mylist)
+
+
+import mymodule
+
+print(mymodule.mysum(1,2))
+print(mymodule.mymultiply(2,3))
+
+from mymodule import mymultiply, mysum
+
+print(mysum(1,2))
+print(mymultiply(1,2))
+
+#파이썬 패키지로 인식하기 위해서는 __init__ 파일이 있어야 한다.
+
+from mylib import math
+print(math.mysum4(1,2,3,4))
+
+from mylib.math import mysum4
+print(mysum4(1,2,3,4))
+
+
+from mylib import mysum4 # mylib/__init__.py 내 mysum4
+print(mysum4(1,2,3,4))
+
+"""
+from mylib import mysum4 as mylib_mysum4
+from mylib2 import mysum4 as mylib2_mysum4
+다른 폴더에 동일한 함수가 있을 경우 as 문을 이용해서 이름을 변경해서 사용해야한다.
+만약 이름을 변경하지 않을 경우 mylib2 폴더의 mysum4로 덮어 씌어지게 된다.
+"""
+
+
+
+
+
