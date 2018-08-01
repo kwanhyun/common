@@ -728,6 +728,22 @@ from mylib2 import mysum4 as mylib2_mysum4
 """
 
 
+import sys
+print(sys.path)
+#sys.path 경로에서 파일을 찾지 못하면 importerror가 발생된다.
+
+"""
+루트에 라이브러리 만들때 기본 내장 라이브러리와 이름이 겹치지 않도록 만드는 것이 중요
+폴더를 만들고 그 하위에 만들면 에러가 발생되지 않음
+"""
+
+from mylib.math import get_file
+
+print(get_file())
 
 
+from os.path import dirname
+print(dirname(get_file()))
+print(dirname(dirname(get_file())))
 
+#문자열 인코딩과 유니코드
