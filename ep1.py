@@ -747,3 +747,14 @@ print(dirname(get_file()))
 print(dirname(dirname(get_file())))
 
 #문자열 인코딩과 유니코드
+
+
+
+unicode_string = '가'
+print(unicode_string)
+
+utf8_string = unicode_string.encode('utf-8')
+print(utf8_string) #uft로 인코딩하라
+
+unicode_string = utf8_string.decode('utf-8')
+print(unicode_string) #utf를 디코등하라
