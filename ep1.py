@@ -801,7 +801,7 @@ with open("hello.txt","wt",encoding="utf8") as f:
 
 #with 절은 따로 close가 필요 없음
 
-'''
+"""
 from contextlib import contextmanager
 
 @contextmanager
@@ -814,15 +814,28 @@ def myopen(filepatch, mode, encoding):
         f.close()
 
 
-with myopen('test.txt','wt','utf8') as f:
+with myopen('aa.txt','wt','utf8') as f:
     f.write('hello')
     f.write('world')
-'''
+"""
 #파일 오브젝트는 순회 가능한 객체
 with open("acn.txt","rt",encoding="utf8") as f:
     for line in f:
         print(line)
 
+
+from contextlib import contextmanager
+@contextmanager
+
+def myopen(filepath, mode, encode):
+    f = open(filepath, mode, encoding=encode)
+    try:
+        yield f # with절의 as에 넘겨집니다.
+    finally:
+        f.close()
+with myopen('helloworld.txt', 'wt', 'utf8') as f:
+    f.write('hello ')
+    f.write('world ')
 
 with open("acn.txt","rt",encoding="utf8") as f:
     for line in f:
@@ -834,5 +847,75 @@ for line in open("acn.txt","rt",encoding="utf8"):
 
 for line in open("acn.txt","rt",encoding="utf8"):
     print("$$$$" + line.rstrip()) #개행문자 제거 코드
+
+
+#오버로딩과 오버라이딩
+"""
+오버로딩: 이름이 같지만, 인자와 리턴타입이 다른 멤버 함수를 여럿 정의하는 것
+파이썬에서는 미지원
+
+오버라이딩:상위 클래스가 가지고 있는 메소드를 하위 클래스가 재정의
+"""
+
+# 오버로딩을 왜 파이썬에서 못쓰는가? 언어가 틀리므로,,,
+# default 인자를 통해서 해결할 수 있다
+
+# 오버라이딩
+
+class Person(object):
+    def __init__(self,name,age):
+        self.name =name
+        self.age = age
+    def __str__(self):
+        return 'Person("{}","{}")'.format(self.name, self.age)
+
+person = Person('Tom','4')
+print(person) # 이렇게 하면 __str__을 출력하게 된다.
+
+class Season(object):
+    def __init__(self,name,age,foods):
+        self.name =name
+        self.age = age
+        self.foods = foods
+    def __getitem__(self,key):
+        return self.foods[key]
+
+    def __setitem__(self,key,value):
+        self.foods[key] = value
+
+foods = ['사과','치킨','우유','바나나']
+tom=Season('TOM',10,foods)
+
+print(tom[3]) # 내부적으로는 tom.__getitem__(3) 과 같이 실행됨
+tom[3] = '초코우유' # 내부적으로는 tom.__setitem__(3,'초코우유') 과 같이 실행됨
+
+print(tom[3])
+
+
+
+
+class Person1(object):
+    def __init__(self,name,age):
+        self.name =name
+        self.age = age
+    
+    def __add__(self, value):
+        return Person1(self.name, self.age+value)
+    
+    def __iadd__(self, value):
+        self.age += value
+        return self
+    
+    def __repr__(self):
+        return 'Person("{}","{}")'.format(self.name, self.age)
+
+tom = Person1('Tom',10)
+
+print(tom)
+
+print(tom+10)
+print(tom)
+tom +=20
+print(tom)
 
 
