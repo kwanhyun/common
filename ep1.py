@@ -758,3 +758,81 @@ print(utf8_string) #uft로 인코딩하라
 
 unicode_string = utf8_string.decode('utf-8')
 print(unicode_string) #utf를 디코등하라
+
+import json
+names= {'영희': 10, '화장품':9}
+print(json.dumps(names))
+
+print(json.dumps(names,ensure_ascii=False)) #uft8로 인코딩 해서 내보내는 방법
+
+## 텍스트는 자동 인코드/디코드를 제공한다.
+## 문자열을 파일에 저장할 때는 인코딩하여 저장한다.
+## 문서에서 문자열을 읽을 때는 유니코드로 디코등하여 읽을 수 있다.
+
+## 바이너리 데이터는 자동 인코드/디코드를 수행하지 않는다.
+## 텍스트 데이터도 binary로 열어도 됨. 다만 자동 인코드/디코드가 수행되지 않으므로
+## 인위적으로 인코드/디코드를 수행해 주면됨
+
+file_obj = open("hello01.py","rt",encoding="utf8")
+print(file_obj.read())
+print("---------------")
+print(file_obj.read()) ## 내용 없음
+file_obj.seek(0)
+print(file_obj.read())
+file_obj.close()
+
+file_obj3 = open("hello01.py","rb") #bytes 모드 일때 
+print(file_obj3.read())
+print(file_obj3.read()) # 내용이 안나온다. 커서가 마지막에 있으니.. 커서를 옮겨줘야함
+file_obj3.seek(0)
+print(file_obj3.read())
+file_obj3.seek(0)
+print(file_obj3.read().decode("utf8")) #바이너리 모드에서는 수동 인코드 디코드해줘야함
+file_obj3.close()
+
+open("mkdir1/result1.txt","wt",encoding="utf8").write("홍팀이승!!")
+open("mkdir1/result1.txt","at",encoding="utf8").write("이건추가승")
+
+
+with open("hello.txt","wt",encoding="utf8") as f:
+    print("helllo line1")
+    print("helllo line2", file=f)
+    print("helllo line3")
+
+#with 절은 따로 close가 필요 없음
+
+'''
+from contextlib import contextmanager
+
+@contextmanager
+
+def myopen(filepatch, mode, encoding):
+    f = open(filepatch, mode, encoding)
+    try:
+        yield f
+    finally:
+        f.close()
+
+
+with myopen('test.txt','wt','utf8') as f:
+    f.write('hello')
+    f.write('world')
+'''
+#파일 오브젝트는 순회 가능한 객체
+with open("acn.txt","rt",encoding="utf8") as f:
+    for line in f:
+        print(line)
+
+
+with open("acn.txt","rt",encoding="utf8") as f:
+    for line in f:
+        print("ancd"+line.rstrip())
+
+
+for line in open("acn.txt","rt",encoding="utf8"):
+    print("$$$$" + line)
+
+for line in open("acn.txt","rt",encoding="utf8"):
+    print("$$$$" + line.rstrip()) #개행문자 제거 코드
+
+
