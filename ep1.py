@@ -919,3 +919,34 @@ tom +=20
 print(tom)
 
 
+
+#Class 상속
+  
+#공통이 되는 클래스를 선언한다.
+class Person101(object):
+    def __init__(self, name):
+        self.name = name
+    def run(self):
+        print('run')
+    def eat(self, food):
+        print('{}을'.format(food))
+    def sleep(self):
+        print('sleep well')
+
+#Person101 클래스를 부모로 하여 상속받는 다른 클래스를 만든다.
+#그리고, 자식 클래스는 자기만의 함수를 하나 더 만들어 사용한다.
+
+class Doctor(Person101):
+    def research(self):
+        print('work hard')
+
+class Programer(Person101):
+    def codingh(self):
+        print('coding hard')
+
+class Designer(Person101):
+    def Design(self):
+        print('Design hard')
+
+
+#MRO Class.mro : 클래스 상속 순서 
