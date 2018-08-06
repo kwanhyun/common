@@ -1005,10 +1005,163 @@ def kkk(x,y):
 print(kkk(1,2))
 '''
 
+#else구문의 다양한 사용 예
 
 for i in range(10):
     print(i)
 else:
     print('END') ## 마지막까지 돌았을 때 출력된다. 만약에 Beark문을 걸어서 if i>3: break를 걸면 End가 출력 안됨. 
+
+    print('예외처리 테스트')
+try:
+    value = 'ㅂ'+1
+except TypeError as e:
+    print(e)
+else:
+    print('아무런 예외도 발생하지 않았어요')
+finally:
+    print('마지막에 무조건 호출')
+
+
+try:
+    value = 1+1
+except TypeError as e:
+    print(e)
+else:
+    print('아무런 예외도 발생하지 않았어요')
+finally:
+    print('마지막에 무조건 호출')
+
+
+#장식자
+'''
+어떤 함수를 감싸는 목적의 함수
+1급 함수: 함수를 동적으로 생성 가능, 반환값으로 전달 가능
+'''
+
+##1급 함수
+fn1 = lambda x,y : x+y
+print(fn1(1,2))
+
+fn21 = lambda x,y: x+y+10
+print(fn21(1,2))
+
+
+base = 10
+fn3 = lambda x,y:x+y+base
+print(fn3(1,2))
+
+def mysum7():
+    fn = lambda x,y : x+y
+    return fn
+
+myfn = mysum7()
+print(myfn(1,10))
+print(mysum7()(100,100)) #리턴 값 자체가 함수이므로 함수(100,100) 같이 사용 가능하다.
+print((lambda q,w : q+w)(1,444))
+
+
+def base_10(fn): ## mymy를 함수로 받고 mymy(x,y)
+    def wrap(x,y):
+        return fn(x,y)+10  ##x+y+10 
+    return wrap #x+y+10결과를 리턴
+
+'''위의 코드와 동일한 코드
+def base_10(fn):
+    warp = lambda x,y:x+y+10
+    return wrap
+'''
+def mymy(x,y):
+    return x+y
+mywrap = base_10(mymy)
+
+"""
+@base_10 ::base_10 함수에 mymy를 인자로 넘기라는 의미
+def mymy(x,y):
+    return x+y
+
+#위의 base_10이 아래 함수와 동일
+def mymy(x,y):
+    return x+y
+mymy = base_10(mymy)
+"""
+
+def mymultiply2(x,y):
+    return x*y
+mywrap = base_10(mymultiply2)
+
+
+print(mywrap)
+
+print(mywrap(1,2))
+
+
+print(mywrap)
+print(mywrap(1,2))
+
+
+##memoize
+"""
+import time
+
+def mylongtimesum(x,y):
+    time.sleep(1)
+    return x+y+10
+
+
+print(mylongtimesum(1,2))
+print(mylongtimesum(1,2))
+print(mylongtimesum(1,2))
+
+3초 걸림
+
+"""
+import time
+
+cached1={} #dictionary cached={(1,2):13, }
+cached2={}
+def mylongtimesum(x,y):
+    key = (x,y) #튜플 key=(1,2) 이거 자체가 Key가 된다
+    if key not in cached1:
+        time.sleep(1)
+        cached1[key] = x+y+10
+    return cached1[key]
+
+
+print(mylongtimesum(1,2))
+print(mylongtimesum(1,2))
+print(mylongtimesum(1,2))
+#1초밖에 안걸림
+
+
+print(mylongtimesum(1,2))
+print(mylongtimesum(2,2))
+print(mylongtimesum(1,2))
+#2초 걸림
+
+def myloongtimemultiply(x,y):
+    key = (x,y) #튜플 key=(1,2) 이거 자체가 Key가 된다
+    if key not in cached2:
+        time.sleep(1)
+        cached2[key] = (x*y)+10
+    return cached2[key]
+
+
+print(myloongtimemultiply(1,2))
+print(myloongtimemultiply(1,2))
+print(myloongtimemultiply(1,2))
+#1초밖에 안걸림
+
+
+print(myloongtimemultiply(1,2))
+print(myloongtimemultiply(2,2))
+print(myloongtimemultiply(1,2))
+#2초 걸림
+
+##mylogtimesum 과 mylogtimemultiply 코드 중복이 너무 심함
+##장식자 호출
+
+
+
 
 
