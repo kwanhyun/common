@@ -949,4 +949,66 @@ class Designer(Person101):
         print('Design hard')
 
 
-#MRO Class.mro : 클래스 상속 순서 
+#MRO Class.mro : 클래스 상속 순서
+
+
+#예외 처리 진행
+#콜스텍: 호출한 함수를 거슬러 올라가는 것
+#스택트레이스: 프로ㅡ램 실행 중 오류 시점에서의 오류 정보
+'''
+print ('line1')
+value = int('a') +1
+print ('line2')
+'''
+#파이썬은 try .. except 로 예외 처리를 한다.
+print ('line1')
+try:
+    value = int('a') +1
+except ValueError as e: ## ValueError에서 못잡을 경우 상위로 전파하면서 코드가 멈춤
+    print(e)
+print ('line2')
+
+
+def fn1(x,y):
+    return x+y
+def fn2(a,b):
+    return 10*fn1(a,b)
+
+
+try:
+    print(fn2('a',10))
+except TypeError as e:
+#except Exception as e: // 최상위 예외처리 클래스.. 그러나 코딩할 때 어떤 예외가 발생되는지 알아야 한다. 범위가 너무 넓으면 효율적인 코드가 아님
+    print(e)
+
+#NotImplementedError
+#아직 구현하지 않은 부분임을 명시
+
+'''
+class Person1004(object):
+    def run(self):
+        raise NotImplementedError
+
+class Doctor1004(Person1004):
+    pass
+
+class Developer(Person1004):
+    def run(self): ##Person1004 상속 받은 후 run을 재구현
+        print('work hard!!')
+
+Doctor1004().run()
+Developer().run()
+
+def kkk(x,y):
+    raise NotImplementedError
+
+print(kkk(1,2))
+'''
+
+
+for i in range(10):
+    print(i)
+else:
+    print('END') ## 마지막까지 돌았을 때 출력된다. 만약에 Beark문을 걸어서 if i>3: break를 걸면 End가 출력 안됨. 
+
+
