@@ -1161,7 +1161,51 @@ print(myloongtimemultiply(1,2))
 ##mylogtimesum 과 mylogtimemultiply 코드 중복이 너무 심함
 ##장식자 호출
 
+import time
+
+def memorize(fn):
+    cached = {}
+    def wrap(x,y):
+        key = (x,y)
+        if key not in cached:
+            cached[key] = fn(x,y)
+        return cached[key]
+    return wrap
+
+cached1={} #dictionary cached={(1,2):13, }
+cached2={}
+
+@memorize
+def mylongtimesum1(x,y):
+    time.sleep(1)
+    return x+y+10
+
+@memorize
+def myloongtimemultiply1(x,y):
+    time.sleep(1)
+    return (x*y)+10
+
+print('장식자 구현')
+
+print(myloongtimemultiply1(1,2))
+print(myloongtimemultiply1(1,2))
+print(myloongtimemultiply1(1,2))
+#1초밖에 안걸림
 
 
+print(myloongtimemultiply1(1,2))
+print(myloongtimemultiply1(2,2))
+print(myloongtimemultiply1(1,2))
 
 
+#인자를 받는 장식자
+def base_11(fn):
+    def wrap(x,y):
+        return fn(x,y) + 10
+    return wrap
+
+@base_11
+def mysum111(x,y):
+    return x+y
+
+print(mysum111(1,2))
