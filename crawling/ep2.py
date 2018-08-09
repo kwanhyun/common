@@ -49,7 +49,7 @@ image_urls = [
 for image_url in image_urls:
     headers = {
         'Referer':'https://comic.naver.com/webtoon/detail.nhn?titleId=119874&no=1199&weekday=tue',
-    }
+    } # get 인자 지정 하였으며, Dictionary 방식
     response = requests.get(image_url,headers=headers)
     image_data = response.content
     filename = os.path.basename(image_url)
@@ -80,3 +80,54 @@ r.text is the content of the response in unicode, and r.content is the content o
 Presumably r.text would be preferred for textual responses, such as an HTML or XML document, and r.content would be preferred for "binary" filetypes, such as an image or PDF file.
 
 '''
+
+
+'''
+HTTP 요청 Request 라이브러가 좋음
+
+'''
+import requests
+
+#단순 GET요청
+response = requests.get('https://news.naver.com/main/home.nhn')
+print(response.status_code)
+print(response.headers)
+#html = response.text
+#print(html)
+print(response.headers['Content-Encoding']) #대소문자 구분이 없다
+print(response.encoding)
+print(response.headers['Content-Type'])
+
+# response.content bytes형식으로 받을 경우 response.encoding으로 디코딩한다. 유니코드 형식
+# 문자일 경우... html = response.text or response.content.decode('utf8')
+#print(response.json()) json 형식이 아닐 경우 jsondecodeError 가 발생한다. text 형식을 json 형식으로 변환하는 것을 시리얼라즈라고 한다.
+'''
+response.encoding 시 'iso-8859-01' 혹은 none 으로 나올 경우 <- 캐릭터셋 지정안하여,,
+이럴 경우에는 response.encoding = 'euc-kr' 식으로 직정 인코딩을 지정할 수 있다.
+그리고. contents.text로 decode 하여 사용한다.
+'''
+
+#POST 요청!!!!
+#Get 요청 시에는 Get인자만 가능하지만, Post요청 시에도 Get인자 요청이 가능한다.
+
+# Get 요청은 Params / Post요청은 data or files
+
+data = {'k1':'v1','k2':'v2'}
+response = requests.post('http://httpbin.org/post',data=data)
+print(response.json()) # 이건 args
+
+get_parmas = {'k1':'v1','k2':'v2'}
+response = requests.get('http://httpbin.org/get',params=get_parmas)
+print(response.json()) # 이건 form
+
+import json
+json_data = {'k1':'v2','k2':[1,2,3],'name':'Ask 장고'}
+
+json_string = json.dumps (json_data) # 사전 형식을 문자열로 변환하는 방식
+response = requests.post('http://httpbin.org/post', data=json_string)
+
+print(response.json())
+print('=============')
+json_string = json.dumps (json_data) # 내부적으로 문자열 변환 json.dumps를 호출한다.
+response = requests.post('http://httpbin.org/post', json=json_data)
+print(response.json())
