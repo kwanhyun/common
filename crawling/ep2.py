@@ -131,3 +131,54 @@ print('=============')
 json_string = json.dumps (json_data) # 내부적으로 문자열 변환 json.dumps를 호출한다.
 response = requests.post('http://httpbin.org/post', json=json_data)
 print(response.json())
+
+print('멜론 크롤링 시작')
+#import requests
+#
+#response12 = requests.get('http://www.genie.co.kr/chart/top200')
+#result = response12.text
+#
+#print(result)
+#셀레늄은 브라우저를 통한 자동화 이므로 개발자 도구의 Dom Tree 형태의 정보를 참고하고
+#request의 경우에는 기본 html 응답에서 확인해야 하므로 페이지 소스 보기에서 정보를 확인한다.
+#BeatifulSoup4가 lxml 보다 사용이 간편하다.
+
+from bs4 import BeautifulSoup
+
+html = '''
+<ol>
+<li>Never - 국민의 아들</li>
+<li>New Face - Psy</li>
+<ol>
+....
+'''
+soup = BeautifulSoup(html,'html.parser')
+for tag in soup.select('li'):
+    print(tag.text)
+
+# 파서 종류 : html.parser(BeatifulSoup4에서만..) / lxml (lxml을 따로 설치해야함))
+# Css Selector를 사용한 크롤링이 효율적이다.
+
+
+#import requests
+#from bs4 import BeautifulSoup
+#html = requests.get('http://www.melon.com/chart/index.htm').text
+#soup = BeautifulSoup(html, 'html.parser')
+#
+#tag_list = soup.select('#tb_list tr .wrap_song_info a[href*=playSong]')
+#for idx, tag in enumerate(tag_list, 1):
+#    print(idx, tag.text)
+
+
+#import requests
+#from bs4 import BeautifulSoup
+#html = requests.get('http://www.genie.co.kr/chart/top200').text
+##print(html)
+#
+#soup = BeautifulSoup(html, 'html.parser')
+#tag_list = soup.select('#body-content .music-list-wrap a[onclick*=fnViewArtist]')
+#for id,tag in enumerate(tag_list,1):
+#    print(id,tag.text)
+
+#html parser는 닫는 테크가 없으면 잘 못 읽어온다. 그래서 lxml을 사용한다.
+
