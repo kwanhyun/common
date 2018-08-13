@@ -182,3 +182,27 @@ for tag in soup.select('li'):
 
 #html parser는 닫는 테크가 없으면 잘 못 읽어온다. 그래서 lxml을 사용한다.
 
+#이미지
+#썸네일 처리: 경우에 따라서 용량을 줄이는 경우
+#이미지 다운받기
+
+import os
+from PIL import Image #pillow
+import requests
+
+image_url = ('https://ee5817f8e2e9a2e34042-3365e7f0719651e5b'
+             '8d0979bce83c558.ssl.cf5.rackcdn.com/python.png')
+image = requests.get(image_url).content
+filename = os.path.basename(image_url)
+with open(filename, 'wb') as f:
+    f.write(image)
+
+
+from IPython.display import Image
+Image(filename='python.png')
+
+
+
+
+#이미지 품질 낮추기 / 다른 포맷으로 변경하기
+#resize / thumbnail 차이 (비율 유지의 차이/원본 변경의 차이)
