@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog', #app 생성 후 등록 필요
+    'dojo',
 ]
 
 MIDDLEWARE = [
