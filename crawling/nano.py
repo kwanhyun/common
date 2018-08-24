@@ -4,18 +4,16 @@ from bs4 import BeautifulSoup
 
 browser = mechanicalsoup.StatefulBrowser()
 
-browser.open('https://mlogin.plaync.com/login/signin') # request.get
+browser.open('https://member.ssg.com/member/popup/popupLogin.ssg?originSite=http%3A//emart.ssg.com&t=&gnb=login') # request.get
 browser.select_form('form#loginForm')
-browser['login_name'] = 'ckh6666'
-browser['password'] = 'cdh1063744!'
+browser['mbrLoginId'] = 'ckh6666'
+browser['password'] = 'sky019293'
 browser.submit_selected()
-#print(res.status_code)
 
-browser.launch_browser()
 
-#response = requests.get('https://github.com/settings/emails')
-#html = response.text
-#print(html)
+response = requests.get('https://pay.ssg.com/myssg/orderInfo.ssg?viewType=Ssg')
+html = response.text
+print(html)
 
 
    #get_parmas = {'username':'kwanhyun','password':'sky019293'}
