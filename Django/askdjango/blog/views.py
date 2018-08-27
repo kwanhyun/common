@@ -1,7 +1,21 @@
+#blog/views.py
+
 from django.shortcuts import render
+from .models import Post
 
 # Create your views here.
 
 def post_list(request):
-    return render(request, 'blog/post_list.html') #view 에서 template 지정하는 형식
+    qs = Post.objects.all()
+    
+    q = request.GET.get('q','')
+    if q:
+        qs = qs.filter(title__icontains=q)
+    
+
+    return render(request, 'blog/post_list.html',{
+        'post_list':qs,
+        'q':q,
+        }) #view 에서 template 지정하는 형식
+
 # blog/templates/blog/post_list.html

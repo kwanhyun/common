@@ -1,0 +1,6 @@
+django==1.10.5
+django-debug-toolbar
+django-extensions
+ipython[notebook]
+
+#python manage.py shell_plus

@@ -29,6 +29,9 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #최초 저장될 때 시간
     update_at = models.DateTimeField(auto_now=True) # 해당 레코드가 갱신이 될때 마다 일시 저장
 # Create your models here.
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.title
 
