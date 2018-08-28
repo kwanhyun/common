@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 LOGIN_INFO = {
-    'username' : 'ncckh',
-    'password': '3wndThvmxm!'
+    'txtId' : 'ncckh',
+    'txtPwd': '5smfskfTl!'
 }
 
 with requests.session() as s:
@@ -29,7 +29,8 @@ with requests.session() as s:
     print(html)
     '''
 
-    #nano 시도
+    #nano 성공
+    '''
 
     first_page = s.get('https://nano.ncsoft.com/signin')
     html = first_page.text
@@ -53,3 +54,19 @@ with requests.session() as s:
     response = s.get('https://nano.ncsoft.com/',headers=headers)
     html = response.text
     print(html)
+'''
+#데스크시도
+    
+    login_req = s.post('https://servicedesk.korea.ncsoft.corp',data=LOGIN_INFO,verify=False)
+    print(login_req.status_code)
+    
+    
+    #headers = {
+    #    'referer':'https://servicedesk.korea.ncsoft.corp'
+    #}
+
+    response = s.get('http://servicedesk.korea.ncsoft.corp/usr/library/librarylist.aspx')
+    html = response.text
+    print(html)
+
+    
