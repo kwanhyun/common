@@ -1,6 +1,6 @@
 #blog/views.py
-
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404,render
 from .models import Post
 
 # Create your views here.
@@ -19,3 +19,16 @@ def post_list(request):
         }) #view 에서 template 지정하는 형식
 
 # blog/templates/blog/post_list.html
+
+
+def post_detail(request,id):
+    #try:
+    #    post = Post.objects.get(id=id)
+    #except Post.DoesNotExist:
+    #    raise Http404
+
+    post=get_object_or_404(Post,id=id)
+
+    return render(request,'blog/post_detail.html',{
+        'post':post,
+    })
