@@ -15,6 +15,15 @@ message.set_content(
 '''
 )
 
+message.add_alternative('''
+    <h1>AskDjango VOD</h1>
+
+    <ul>
+        <li>test test</li>
+    </ul>
+
+''',subtype='html')
+
 with smtplib.SMTP_SSL('smtp.naver.com',465) as server:
     server.ehlo()
     server.login('ckh6666',password)
