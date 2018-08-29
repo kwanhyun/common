@@ -40,3 +40,15 @@ makemigrations: 마에그레이션 파일 생성
 migrate: 실제 마이그레이션 진행
 이미 진행된 Migrate 파일은 지우지 않는다.!!!
 """
+
+#1:N 의 관계 모델링
+class Comment(models.Model):
+    post = models.ForeignKey(Post)
+    author = models.CharField(max_length=20)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+
+
+

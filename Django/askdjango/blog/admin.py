@@ -1,6 +1,6 @@
 #blog/admin.py
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -24,6 +24,10 @@ class PostAdmin(admin.ModelAdmin):
         self.message_user(request,'{}건의 포스팅을 Publshed 상태로 변경'.format(updated_cont))
 
     make_publishd.short_description = '지정 포스팅을 Published상태로 변경합니다.'
-    
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
+
 #admin.site.register(Post, PostAdmin)
 # Register your models here.
