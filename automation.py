@@ -35,8 +35,10 @@ filepath_list = ['./test.jpg','./test1.jpg','./test2.jpg']
 for filepath in filepath_list:
     with open(filepath,'rb') as f:
         filename = os.path.basename(filepath)
+        cid = filename
         img_date = f.read()
         part = MIMEApplication(img_date,name=filename)
+        part.add_header('Content-ID','<'+cid+'>')
         message.attach(part)
 
 
