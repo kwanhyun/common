@@ -12,9 +12,13 @@
     {% for post in post_list %}
         <li>
             {{post.id}}
-            <a href="/blog/{{post.id}}/">
-            {{post.title}}
+            
+            <a href="{% url "blog:post_detail" post.id %}">
+                {{post.title}}
             </a>
+            <!--<a href="/blog/{{post.id}}/">
+            {{post.title}}
+            </a>-->
             <small>by {{post.update_at}}</small>
             <small>at {{post.created_at}}</small>
         </li>
@@ -30,3 +34,32 @@
 </ul>
 
 {% endblock content %}
+
+<!--
+In [2]: from django.core.urlresolvers import reverse
+In [7]: reverse('blog:post_list')
+Out[7]: '/blog/'
+
+In [8]: reverse('blog:post_detail',args=[10])
+Out[8]: '/blog/10/'
+
+In [11]: reverse('blog:post_detail',kwargs={'id':2})
+Out[11]: '/blog/2/'
+
+In [12]: from django.shortcuts import resolve_url
+
+In [13]: resolve_url('blog:post_list')
+Out[13]: '/blog/'
+
+In [14]: resolve_url('blog:post_detail',10)
+Out[14]: '/blog/10/'
+
+In [15]: resolve_url('blog:post_detail',id=10)
+Out[15]: '/blog/10/'
+
+In [16]: from django.shortcuts import redirect
+
+In [17]: redirect('blog:post_detail',10)
+Out[17]: <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/blog/10/">
+
+-->
