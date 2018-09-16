@@ -4,6 +4,7 @@ from . import views_cbv
 
 urlpatterns =[
     url(r'^new/$',views.post_new),
+    url(r'^(?P<id>\d+)/edit/$',views.post_edit),
     #url(r'^sum/(?P<x>\d+)$',views.mysum),
     #url(r'^sum/(?P<x>\d+)/(?P<y>\d+)$',views.mysum),
     #url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/(?P<z>\d+)$',views.mysum),
@@ -18,5 +19,4 @@ urlpatterns =[
     url(r'^cbv/list2/$',views_cbv.post_list2),
     #url(r'^cbv/list3/$',views_cbv.post_list3),
     #url(r'^cbv/excel/$',views_cbv.excel_download),
-
 ]
