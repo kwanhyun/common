@@ -1,0 +1,668 @@
+<?xml version='1.0' encoding='utf-8'?>
+<config module='gamed'>
+
+	<!-- ${host} ${type} -->
+
+	<!-- ==== path ==== -->
+	<!-- [REQ] full root path -->
+	<option name='root-path' value='D:\Service\Gamedaemon\'/>
+	<!-- [REQ] full log path -->
+	<option name='log-path' value='E:\Service\Gamedaemon\'/>
+	<!-- [REQ] full data path  -->
+	<option name='data-path' value='#{cert_path}#'/>
+
+	<!-- ==== certification ==== -->
+	<!-- [REQ] certification file path -->
+	<option name='cert' value='${cert}'/>
+
+	<!-- ==== locale configuration ==== -->
+	<!-- [REQ] support languages. sperated by ';'. supports:[default(alphabet&korean)|korean|english|japanese|chineses|chineset|russian|french|german|thai|vietnamese|bportuguese] -->
+	<option name='support-languages' value='default'/>
+	<!-- [REQ] log file codepage, write numeric value only. etc) CP_ACP(0, default), CP_949(949), CP_UTF8(65001) -->
+	<option name='log-codepage' value='0'/>
+
+	<!-- ==== publisher configuration ==== -->
+	<!-- [REQ] publisher, supports:[default|tencent|innova|ncjapan|sea|nctaiwan|ncwest|garena] -->
+	<option name='publisher' value='default'/>
+
+	<!-- ==== system configuration ==== -->
+	<!-- [OPT] 0 is system recommend -->
+	<option name='worker-thread' value='0'/>
+	<!-- [OPT] 0 is default = 5000 -->
+	<option name='max-client' value='50000'/>
+	<!-- [OPT] 0: no dump, 1: minimal dump(default), 2: full dump -->
+	<option name='dump-type' value='2'/>
+	<!-- [OPT] y�� �����ϸ�, cooldown��, stop�� ������ �� full dump�� �����մϴ�. (�⺻�� n) -->
+	<option name='create-dump-before-stop' value='no'/>
+	<!-- [OPT] 0: PER_QUATER, 1:PER_HALF(default), 2: PER_HOUR -->
+	<option name='create-logfile-time-type' value='1'/>
+	<!-- [OPT] word filter enable / disable -->
+	<option name='word-filter-enable' value='yes'/>
+	<!-- [OPT] PerfProvider�� ����� ������ ���� ����, no�̸� ������, yes�̸� ��� -->
+	<option name='use-perf-provider' value='yes'/>
+	<!-- [OPT] 1:Program(default), 2:internal, 3:qa-1-reserve, 4:qa-2-nextlive, 5:qa-3-live, 6:live-rc, 7:live-test, 8:live-1, 9:live-2, 10:addition-1, 11:addition-2 -->
+	<option name='service-mode' value='8'/>
+	<!-- [OPT] 0: no use(default), 2: perf provider, 4: file, 6: both (bit field) -->
+	<option name='perf-log-type-for-geozone' value='4'/>
+	<!-- [OPT] PerfProvider���� ������ GeoZone Id. ;�� ����ؼ� ��� ���δ�. all ���� ����. all�� �ϸ� persistzone�� �⺻������ ����. ex) 2000;2001;2002; -->
+	<option name='use-perf-geozone' value='5500;4900;6300;6400;6405;'/>
+	<!-- [OPT] cooldown��, ���� ������ ���� �� ������ ��� �ð�(��) -->
+	<option name='cooldown-disconnect-delay' value='60'/>
+	<!-- [OPT] cooldown��, ���� ������ ���� �и� �� ������ ��� �ð�(��) -->
+	<option name='cooldown-complete-delay' value='180'/>
+	<!-- [OPT] y�� �����ϸ�, serializer�� execQueue ����Ʈ ��� ����� Clear(false)���� DetachList()�� �ٲ�ϴ�. (�⺻�� n) -->
+	<option name='use-serializer-bug-fix-enable' value='no'/>
+	<!-- [OPT] y�� �����ϸ�, ������ �ε��� multicore�� Ȱ���Ͽ� ������ �����˴ϴ�.(���� Internal������ ����) (�⺻�� n) -->
+	<option name='use-parallel-load-enable' value='no'/>
+	<!-- [OPT] y�� �����ϸ�, GeoZone �ε��� ���� �������� ������ �����˴ϴ�.(���� Internal������ ����) (�⺻�� n) -->
+	<option name='use-improved-geo-zone-load-enable' value='no'/>
+	<!-- [OPT] y�� �����ϸ�, ��ü Data���� ref Key�� üũ�� �� ���� �������� ������ �����˴ϴ�.(���� Internal������ ����) (�⺻�� n) -->
+	<option name='use-improved-data-key-check-logic-enable' value='no'/>
+
+	<!-- ==== charge configuration ==== -->
+	<!-- [OPT] ü���� ���� ����(�⺻���� 15����) -->
+	<option name='trial-play-limit-level' value='15'/>
+	<!-- [OPT] ü���� �÷��� ���� �˸� �� Ŭ���̾�Ʈ�� ������ ���� ������ ��ٸ��� �ð�(��). �ش� �ð��� �������� ������ ���� ����(�⺻���� 30��). 0�̸� ���۾���. -->
+	<option name='trial-play-expired-close-wait-duration' value='30'/>
+
+	<!-- ==== network configuration ==== -->
+	<!-- [OPT] public address range (CIDR format 0.0.0.0/0) (default:empty string; use old rule) -->
+	<option name='public-addr-range' value=''/>
+	<!-- [OPT] internal address range (CIDR format 0.0.0.0/0) (default:empty string; use old rule) -->
+	<option name='internal-addr-range' value=''/>
+	<!-- [OPT] client access addr -->
+	<option name='service-addr' value='${service-addr}'/>
+	<!-- [REQ] client access port -->
+	<option name='public-port' value='10100'/>
+	<!-- [REQ] daemon access port -->
+	<option name='internal-port' value='20100'/>
+	<!-- [REQ] debug / log port -->
+	<option name='manage-port' value='30100'/>
+	<!-- [REQ] builder port -->
+	<option name='builder-port' value='40100'/>
+	<!-- [OPT] alert log send address (ip:port) -->
+	<option name='alert-send-address' value='10.63.10.122:21102'/>
+	<!-- [REQ] max idle time enable / disable -->
+	<option name='max-idle-time-enable' value='yes'/>
+	<!-- [OPT] disconnect after idle time -->
+	<option name='disconnect-after-idle-time' value='yes'/>
+	<!-- [OPT] max idle time -->
+	<option name='max-idle-time' value='180'/>
+	<!-- [OPT] Ʈ����� ��û Ÿ�Ӿƿ� ��� ��� ����(�⺻���� false) -->
+	<option name='transaction-expired-check-enable' value='yes'/>
+	<!-- [OPT] msec. ä�� Ʈ����� ��û ��ȿ �ð�. 0���� �۰ų� ���� ���, 5000 msec���� ����. (�⺻���� 0) -->
+	<option name='transaction-expired-duartion' value='30000'/>
+	<!-- [REQ] debug / log port enable / disable -->
+	<option name='manage-port-enable' value='no'/>
+	<!-- [REQ] use nalge client port enable / disable, Default�� disable -->
+	<option name='use-nagle-client-port' value='no'/>
+	<!-- [OPT] packet compress type, 0:none, 1:zip, 2:... default=0 -->
+	<option name='packet-compress-type' value='2'/>
+	<!-- [OPT] packet compress level, 0~22 default=3 -->
+	<option name='packet-compress-level' value='3'/>
+	<!-- [OPT] packet compress min size 0~4000 default=1000 -->
+	<option name='packet-compress-min-size' value='100'/>
+	<!-- [OPT] packet compress min pccount. zone data recommend pc-count default=20 -->
+	<option name='packet-compress-min-pc-count' value='12'/>
+	<!-- [OPT] broadcast last changed property, not changed property history. default no -->
+	<option name='use-last-changed-property' value='no'/>
+	<!-- [OPT] ����Ʈť�� ���� �ִ� ��ƽ�� ���� Player�� Property��. default 30 -->
+	<option name='max-send-property-count-in-cube' value='30'/>
+	<!-- [OPT] Sight cube���� Player�� ���� ��, ������ Action sub cmd list, ClientMove, ClientMoveAndEventJump, Skill, SkillCancel, SkillHit, Effect, PassiveEffect �� -->
+	<option name='skip-action-packet-list-when-crowded' value=''/>
+	<!-- [OPT] �⺻ sight cube�� ũ��. default 1400 su. -->
+	<option name='sight-cube-size' value='1400'/>
+
+	<!-- ==== management daemon configuration ==== -->
+	<!-- [OPT] accept management daemon enable / disable -->
+	<option name='managementd-enable' value='yes'/>
+	<!-- [OPT] management daemon port -->
+	<option name='managementd-port' value='20102'/>
+
+	<!-- ==== petition daemon configuration ==== -->
+	<!-- [OPT] connect to petition daemon enable / disable -->
+	<option name='petitiond-enable' value='no'/>
+	<!-- [OPT] petition daemon ip address -->
+	<option name='petitiond-address' value='10.63.10.124'/>
+	<!-- [OPT] petition daemon port -->
+	<option name='petitiond-port' value='5107'/>
+
+	<!-- ==== lobby configuration ==== -->
+	<!-- [OPT] GameDaemon�� ������ Lobby Port -->
+	<option name='lobby-port' value='21800'/>
+	<!-- [OPT] GameDaemon�� ������ Lobby address -->
+	<option name='lobby-address' value='10.63.30.131'/>
+
+	<!-- ==== cache daemon configuration ==== -->
+	<!-- [OPT] cache daemon port -->
+	<option name='cached-port' value='20201'/>
+	<!-- [OPT] cache daemon address -->
+	<option name='cached-address' value='${cached-address}'/>
+
+	<!-- ==== arena configuration (each side) ==== -->
+	<!-- [REQ] use arena or not -->
+	<option name='arena-enabled' value='yes'/>
+	<!-- [OPT] max arena id -->
+	<option name='max-arena-id' value='3000'/>
+	<!-- [OPT] max world id -->
+	<option name='max-world-id' value='3000'/>
+	<!-- [OPT] arena lobby port -->
+	<option name='arena-lobby-port' value='21500'/>
+	<!-- [OPT] arena lobby address -->
+	<option name='arena-lobby-adress' value='10.63.10.91'/>
+
+	<!-- ==== arena configuration (arena side) ==== -->
+	<!-- [OPT] arena id [1, maxArenaId] ���� ���̸� ArenaDaemon�� ��, 0�̸� GameDaemon�� �� -->
+	<option name='arena-id' value='0'/>
+	<!-- [OPT] arena ���Խ� user�� ������ ���� �����ϱ������ ���ð�(�ش� �ð� ���� EnterArena�� �����ؾ� ��) -->
+	<option name='max-arena-reserve-user-sec' value='60'/>
+	<!-- [OPT] arena ���Խ� party�� ������ ���� �����ϱ������ ���ð�(�ش� �ð� ���� EnterZone�� ����Ǿ�� ��) -->
+	<option name='max-arena-reserve-party-sec' value='360'/>
+
+	<!-- ==== arena configuration (game side) ==== -->
+	<!-- [OPT] arena access port (game open this port) -->
+	<option name='arena-listen-port' value='20101'/>
+
+	<!-- ==== chatting server configuration ==== -->
+	<!-- [OPT] ChattingServer�� GameDaemon�� ������ �޴� Port -->
+	<option name='chatting-server-port' value='10254'/>
+	<!-- [OPT] ChattingServer�� Client�� ������ �޴� Port -->
+	<option name='chatting-server-client-port' value='10241'/>
+	<!-- [OPT] GameDaemon�� ������ chatting server address(10lan address) -->
+	<option name='chatting-server-address' value='${chatting-server-address}'/>
+	<!-- [OPT] Client�� ������ Chatting Server�� address(public address) -->
+	<option name='chatting-server-client-address' value='${chatting-server-client-address}'/>
+	<!-- [REQ] connect to chatting server or not -->
+	<option name='chatting-server-enable' value='yes'/>
+	<!-- [OPT] ���� �� Client�� ������ GameID -->
+	<option name='chatting-server-bns-game-id' value='54'/>
+	<!-- [OPT] Blowfish ��ȣȭ Signature -->
+	<option name='chatting-server-signature' value='BNS-CHATTING-START'/>
+	<!-- [OPT] Blowfish ��ȣȭ Key -->
+	<option name='chatting-server-keymaterial' value='0A1B2C3D4E5F6A7B8C9D0E1F3372011F'/>
+
+	<!-- ==== craft debug configuration ==== -->
+	<!-- [REQ] QA �� �׽�Ʈ ������ ���� ������ �ð����� ������ ���� ���� -->
+	<option name='fixed-craft-time-enable' value='no'/>
+	<!-- [OPT] ������ �ð����� �����ϴ� ��� ������ ���� �ð�(sec) -->
+	<option name='fixed-craft-time' value='30'/>
+
+	<!-- ==== postoffice agent configuration ==== -->
+	<!-- [OPT] PostOfficeAgent�� GameDaemon�� ������ �޴� Port -->
+	<option name='postoffice-agent-port' value='20501'/>
+	<!-- [OPT] GameDaemon�� ������ PostOfficeAgent address(10lan address) -->
+	<option name='postoffice-agent-address' value='10.63.30.137'/>
+	<!-- [REQ] connect to postOfficeAgent or not -->
+	<option name='postoffice-agent-enable' value='yes'/>
+
+	<!-- ==== market agent configuration ==== -->
+	<!-- [OPT] MarketDealerAgent�� GameDaemon�� ������ �޴� Port -->
+	<option name='market-dealer-agent-port' value='20600'/>
+	<!-- [OPT] GameDaemon�� ������ MarketDealerAgent address(10lan address) -->
+	<option name='market-dealer-agent-address' value='10.63.30.135'/>
+	<!-- [REQ] connect to MarketDealerAgent or not -->
+	<option name='market-dealer-agent-enable' value='yes'/>
+	<!-- [OPT] MarketReaderAgent�� GameDaemon�� ������ �޴� Port -->
+	<option name='market-reader-agent-port' value='20600'/>
+	<!-- [OPT] GameDaemon�� ������ MarketReaderAgent address(10lan address) -->
+	<option name='market-reader-agent-address' value='127.0.0.1'/>
+	<!-- [REQ] connect to MarketReaderAgent or not -->
+	<option name='market-reader-enable' value='no'/>
+
+	<!-- ==== account inventory configuration ==== -->
+	<!-- [OPT] GameDaemon�� ������ AccountInventory Port -->
+	<option name='account-inventory-port' value='21701'/>
+	<!-- [OPT] GameDaemon�� ������ AccountInventory address -->
+	<option name='account-inventory-address' value='10.63.30.133'/>
+	<!-- [REQ] connect to AccountInventoryDaemon or not -->
+	<option name='account-inventory-enable' value='yes'/>
+
+	<!-- ==== smart coupon daemon configuration ==== -->
+	<!-- [OPT] GameDaemon�� ������ SmartCouponDaemon Port -->
+	<option name='smartcoupond-port' value='22000'/>
+	<!-- [OPT] GameDaemon�� ������ SmartCouponDaemon address -->
+	<option name='smartcoupond-address' value='10.63.10.208'/>
+	<!-- [REQ] connect to SmartCouponDaemon or not -->
+	<option name='smartcoupond-enable' value='yes'/>
+
+	<!-- ==== achievement daemon configuration ==== -->
+	<!-- [OPT] GameDaemon�� ������ AchievementDaemon Port -->
+	<option name='achievementd-port' value='22200'/>
+	<!-- [OPT] GameDaemon�� ������ AchievementDaemon address -->
+	<option name='achievementd-address' value='10.63.20.231'/>
+	<!-- [OPT] connect to AchievementDaemon or not -->
+	<option name='achievementd-enable' value='yes'/>
+
+	<!-- ==== duelbot daemon configuration ==== -->
+	<!-- [OPT] GameDaemon�� ������ DuelBotDaemon Port -->
+	<option name='duelbotd-port' value='22400'/>
+	<!-- [OPT] GameDaemon�� ������ DuelBotDaemon address -->
+	<option name='duelbotd-address' value='${duelbotd-address}'/>
+	<!-- [OPT] DuelbotDaemon use nagle or not -->
+	<option name='duelbotd-use-nagle' value='no'/>
+	<!-- [OPT] DuelBot attraction���� ������ zone�� �ִ� ���� -->
+	<option name='duelbotd-max-brain-count' value='${duelbotd-max-brain-count}'/>
+	<!-- [OPT] connect to DuelbotDaemon or not -->
+	<option name='duelbotd-enable' value='yes'/>
+	<!-- [OPT] duelbot �н����� Mode�ΰ�. �н����� Mode��� �ش� Attraction�� ������ ��, DuelBot�� 2�� ���������ϰ� CombatMode�� ����. -->
+	<option name='duelbot-learning' value='no'/>
+
+	<!-- ==== ranking daemon configuration ==== -->
+	<!-- [OPT] GameDaemon�� ������ RankingDaemon Port -->
+	<option name='ranking-port' value='22501'/>
+	<!-- [OPT] GameDaemon�� ������ RankingDaemon address -->
+	<option name='ranking-address' value='10.63.10.208'/>
+	<!-- [OPT] connect to RankingDaemon or not -->
+	<option name='ranking-enable' value='yes'/>
+	<!-- [OPT] season contents type for not check to play in week(default : 6(infinite tower)) -->
+	<option name='season-contents-type-for-not-check-to-play-in-week' value=''/>
+	<!-- [OPT] ���� ��ŷ ��ó�� ���ھ� ��ȸ ó�� �ִ� ���� -->
+	<option name='ranking-log-search-max-count' value='1000'/>
+
+	<!-- ==== NP system configuration ==== -->
+	<!-- [OPT] NP�� ������� ���� -->
+	<option name='np-enable' value='yes'/>
+	<!-- [OPT] NP program-id. 302:live(QA), 303:program, 304:internal, 305:branch -->
+	<option name='np-program-id' value='302'/>
+	<!-- [OPT] NP game-code. bns:live(QA), bnsprog:program, bnsintr:internal, bnsbr:branch -->
+	<option name='np-game-code' value='bns'/>
+	<!-- [OPT] NP bns-server app-id(GUID). bnsserver:D5099619-B2F2-26EB-8DDA-DD084E83DB1B, bnstestserver:2F12DCE2-A63E-DF2C-1944-F2BF61049C05, bnsintr_svr:498FA190-012B-450D-B5A4-BF43302BA4F4, bnsprog_svr:AFACDF37-7714-474A-BEAD-B289447B5A2B -->
+	<option name='np-app-id' value='D5099619-B2F2-26EB-8DDA-DD084E83DB1B'/>
+	<!-- [OPT] np ip address -->
+	<option name='np-address' value='10.71.2.29'/>
+	<!-- [OPT] np port -->
+	<option name='np-port' value='6601'/>
+	<!-- [OPT] whether enable np recv completion log or not. -->
+	<option name='np-recv-completion-log-enable' value='no'/>
+	<!-- [OPT] 0 means default internal session count -->
+	<option name='np-max-session-count' value='0'/>
+
+	<!-- ==== NP contents configuration ==== -->
+	<!-- [OPT] NP Channel Chatting ���񽺸� ������� ���� -->
+	<option name='np-channel-chatting-enable' value='yes'/>
+
+	<!-- ==== log daemon configuration ==== -->
+	<!-- [OPT] LogArchive�� �̿��� �α׸� ������ ���� -->
+	<option name='logd-enable' value='yes'/>
+	<!-- [OPT] log daemon unsent path -->
+	<option name='logd-unsent-path' value='E:\Service\LogAgent\unsent\'/>
+	<!-- [OPT] log daemon���� ping �ֱ�. ���� msec. default=30000 -->
+	<option name='logd-ping-interval' value='1000'/>
+	<!-- [OPT] log daemon�� ���� �� timeout. ���� sec. default=5 -->
+	<option name='logd-timeout' value='5'/>
+	<!-- [OPT] log daemon�� �������� �ʰ� unsent file�� ������� ���� -->
+	<option name='logd-unsent-only' value='no'/>
+	<!-- [OPT] GameLog�� ������ ���� -->
+	<option name='gamelog-enable' value='yes'/>
+	<!-- [OPT] GameLog��, SkillLog�� ������ ���� (�⺻�� y) -->
+	<option name='skill-log-enable' value='${skill-log-enable}'/>
+	<!-- [OPT] GameLog��, �� �м��� ����ϴ� ���� Skill Hit Log�� ������ ���� (�⺻�� n) -->
+	<option name='skill-hit-log-enable' value='no'/>
+	<!-- [OPT] ���Ŀ�ǵ� ��� �α׸� ������ ���� -->
+	<option name='builder-log-enable' value='yes'/>
+	<!-- [OPT] move speed���� �ִ�� ����� ����. ������ su(1su=8cm). default=100su -->
+	<option name='max-move-speed-error-range' value='50'/>
+	<!-- [OPT] walk �� run �̵��� �ִ�� ����� �ӵ� ����. default=100 -->
+	<option name='max-run-speed-error-range' value='30'/>
+	<!-- [OPT] client, server�� move �ð��� ���� ������ ����ϴ� ����. ���� msec. default=1000 -->
+	<option name='max-move-hacking-duration' value='1000'/>
+	<!-- [OPT] move hacking�� move fail �߻� ���� -->
+	<option name='move-hacking-fail-enable' value='no'/>
+	<!-- [OPT] move hacking�� kick���� -->
+	<option name='kick-move-hacking' value='no'/>
+	<!-- [OPT] logd sequence id ���� �α� ������ ���� -->
+	<option name='logd-seq-id-log-enable' value='no'/>
+	<!-- [OPT] move hacking�� GameLog�� ������ ���� ���� -->
+	<option name='move-hacking-log-enable' value='yes'/>
+	<!-- [OPT] logd sequence id �� �������� �α׷� ������ ����. 0�̸� ���� �����. -->
+	<option name='logd-seq-id-max-count' value='0'/>
+
+	<!-- ==== mobile gate configuration ==== -->
+	<!-- [OPT] ����� ����Ʈ�κ����� ������ ����� �� ���� -->
+	<option name='mobile-gate-enable' value='no'/>
+	<!-- [OPT] ����� ����Ʈ�� ������ Port -->
+	<option name='mobile-gate-port' value='20103'/>
+
+	<!-- ==== game guard ==== -->
+	<!-- [OPT] GameGuard ��� ���� ����, no�̸� ������, yes�̸� ��� -->
+	<option name='game-guard-enable' value='yes'/>
+	<!-- [OPT] GameGuard�� �ֱ������� üũ�ϴ� ��ƾ�� ���� �� ������ ���� ����, no�̸� ������, yes�̸� ��� -->
+	<option name='execute-game-guard' value='yes'/>
+	<!-- [OPT] GameGuard�� üũ�Ҷ� Invalid�� User�� Kick�� ������ ���� ����, no�̸� ������, yes�̸� ��� -->
+	<option name='kick-user-by-game-guard' value='no'/>
+	<!-- [OPT] GameGuard Check Interval, ����(sec) -->
+	<option name='game-guard-check-interval' value='300'/>
+	<!-- [OPT] GameGuard Check�� ��� ���������� Kick�� ������. -->
+	<option name='game-guard-fail-count' value='2'/>
+	<!-- [OPT] GameGuard���� Ŭ���̾�Ʈ�� ���� �������� üũ�ϴ� �κ��� Task�� ������ Race Condition ����, no�̸� ������, yes�̸� ��� -->
+	<option name='game-guard-recv-check-auth-data-bug-fix' value='yes'/>
+
+	<!-- ==== nc guard ==== -->
+	<!-- [OPT] NCGuard ��� ���� ����, no�̸� ������, yes�̸� ��� -->
+	<option name='nc-guard-enable' value='yes'/>
+
+	<!-- ==== XIGNCode3 ==== -->
+	<!-- [OPT] XIGNCode3 ��� ���� ����, no�̸� ������, yes�̸� ��� -->
+	<option name='xigncode3-enable' value='no'/>
+
+	<!-- ==== zone ==== -->
+	<!-- [OPT] PersistentZone�� pc-max�� ����ϱ� ���� ��, zone�� recommend-pc-count * �ش簪 / 10���� pc-max�� ����Ѵ�. -->
+	<option name='zone-pc-max-value' value='15'/>
+	<!-- [OPT] �� �ʴ� release�� ���� ����. �⺻�� 1000�� -->
+	<option name='zone-release-count-per-sec' value='1000'/>
+	<!-- [OPT] �� �ʴ� ������ zone serializer�� ����. �⺻�� 1000�� -->
+	<option name='zone-serializer-delete-count-per-sec' value='1000'/>
+	<!-- [OPT] zone�� close���·� ����µ� ��ٸ��� �ð�. default�� 20���̸� �ʴ���. �ִ� 20�ʱ��� ���� -->
+	<option name='zone-close-time' value='10'/>
+	<!-- [OPT] zone�� close���·� ����µ� ��ٸ��� �ð��� ��� �� ������. default 6 -->
+	<option name='zone-close-time-count' value='6'/>
+	<!-- [OPT] Zone�� destroy���·� ����� ��ٸ��� �ð�. default�� 20���̸� �ʴ���, �ִ� 20�ʱ��� ����  -->
+	<option name='zone-destroy-time' value='10'/>
+	<!-- [OPT] Zone�� destroy���·� ����� ��ٸ��� �ð��� ��� �� ������. default 6 -->
+	<option name='zone-destroy-time-count' value='6'/>
+	<!-- [OPT] Zone�� destroy���¿� gabage list�� ���� gabage list���� �ش� �ð��� ������(�ʴ���) �����Ѵ�. default 5��(300) -->
+	<option name='zone-garbage-time' value='60'/>
+	<!-- [OPT] zone destory�Ŀ� serializer garbage time. default�� 10���̸� �ʴ����̴�. -->
+	<option name='serialize-garbage-time' value='300'/>
+	<!-- [OPT] ��Ƽ Rejoin�ÿ� Zone�� ���� ���� ����� ����Ʈ ä�ΰ�(�⺻�� -1) -->
+	<option name='party-rejoin-member-not-entered-zone-default-channel' value='-1'/>
+
+	<!-- ==== client option ==== -->
+	<!-- [OPT] GamedConfig���� ������ ClientOption1, CBT2������ ��Ƽ��Ī ���θ� �����Ѵ�, 0�� ������, 1�� ���(Default�� 1) -->
+	<option name='client-option-1' value='1'/>
+	<!-- [OPT] GamedConfig���� ������ ClientOption2 -->
+	<option name='client-option-2' value='0'/>
+	<!-- [OPT] GamedConfig���� ������ ClientOption3 -->
+	<option name='client-option-3' value='0'/>
+	<!-- [OPT] GamedConfig���� ������ ClientOption4 -->
+	<option name='client-option-4' value='0'/>
+
+	<!-- ==== item 2.0 option ==== -->
+	<!-- [OPT] ������ ���� ����. -->
+	<option name='item-growth-enable' value='yes'/>
+
+	<!-- ==== game option ==== -->
+	<!-- [OPT] ������ ���� ��� ��� ����. default�� yes -->
+	<option name='use-contents-ban' value='yes'/>
+	<!-- [OPT] GuildBattleField ���� ���� ��Ż, ����� ���� ��� ���� ����. default�� yes -->
+	<option name='guild-battle-field-entrance-enable' value='yes'/>
+	<!-- [OPT] geo data�� ���� ���� ����. ���� �ϸ� ���� ������� �ʴ´�. default�� yes -->
+	<option name='validate-geo-world' value='no'/>
+	<!-- [OPT] ����Ƽ �ý��ۿ��� dungeon, cave�� ȥ�ڳ����� ����Ƽ �������� ����. default�� no -->
+	<option name='dismiss-teamparty-if-solo-in-partyzone' value='no'/>
+	<!-- [OPT] �� �ý��� ��� ����. default�� yes -->
+	<option name='team-system-enable' value='yes'/>
+	<!-- [OPT] ����Ƽ �ý��ۿ��� ��ε�ĳ��Ʈ �ֱ�. default�� 10 -->
+	<option name='teamparty-broadcast-period' value='10'/>
+	<!-- [OPT] �� ������ ���忡�� ���� ����. default yes -->
+	<option name='team-suggest-enable' value='yes'/>
+	<!-- [OPT] ��Ƽ ���Խ� Reserve ���� ���� �ð�. default 30�� -->
+	<option name='party-reserve-sec' value='30'/>
+	<!-- [OPT] �����. ��Ƽ�� �α׾ƿ� ���� ���� �ð�. default 6 * 60��(6��) -->
+	<option name='party-disconnect-sec' value='360'/>
+	<!-- [OPT] ���� ���� ����� �й� �Ŀ�ġ�� ���. default yes. no�̸� pc or party or team ���¿��� ��� drop -->
+	<option name='distribution-pouch-drop-when-team' value='yes'/>
+	<!-- [OPT] ���̵� ���� ���� ������ ��, DBID�� Confirm�Ǳ� ������ ���� ����. -->
+	<option name='pending-raid-boss-dead-until-confirm' value='yes'/>
+	<!-- [OPT] �ΰ����� ���� ĳ���� ��� ����, �ΰ����񽺷� ���� �� yes �ƴ� �� no. (default�� no) -->
+	<option name='lobby-service-jumping-character' value='yes'/>
+	<!-- [OPT] ���� ���� �� ���� ��� ��� ���� ����. (default�� no) -->
+	<option name='open-guild-limit-count-enable' value='no'/>
+	<!-- [OPT] ���� ���� �� ����. (default�� 10000) -->
+	<option name='open-guild-limit-count' value='10000'/>
+
+	<!-- ==== test server ==== -->
+	<!-- [OPT] �׽�Ʈ ���� ����. default no -->
+	<option name='test-server-enable' value='no'/>
+
+	<!-- ==== network : disconnect if overflow max send packet ==== -->
+	<!-- [OPT] ��Ŷ ���� ������ �ִ밪��, ���� �ð�(1��)���� �����Ѵ� -->
+	<option name='enable-max-send-packet-check' value='yes'/>
+	<!-- [OPT] ��Ŷ ���� ������ �ִ밪��, ������ �� �̻��� ��� ������ �����Ѵ�. -->
+	<option name='max-send-packet-disconnect-limit' value='1000'/>
+	<!-- [OPT] disconnect-limit�� �Ѿ��� �� ������ ������ ������ �� ���θ� �����Ѵ�. -->
+	<option name='max-send-packet-disconnect-enabled' value='yes'/>
+	<!-- [OPT] ��Ŷ ���� ������ �ִ밪�� ���� �α׸� �����. -->
+	<option name='max-send-packet-log-histogram' value='yes'/>
+
+	<!-- ==== network : disconnect if overflow max recv count ==== -->
+	<!-- [OPT] ��Ŷ ���� ������, ���� �ð�(1��)���� �����Ѵ� -->
+	<option name='enable-max-recv-packet-check' value='yes'/>
+	<!-- [OPT] �����ð�(1��)�� ��Ŷ ���� ������, ������ �� �̻��� ��� ������ �����Ѵ�. ��ȯ�� �̿��� ������ ����ȴ�. �⺻��:�д� 6000�� -->
+	<option name='max-recv-packet-disconnect-limit' value='800'/>
+	<!-- [OPT] �����ð�(1��)�� ��Ŷ ���� ������, ������ �� �̻��� ��� ������ �����Ѵ�. ��ȯ�翡�� ����ȴ�. �⺻��:�д� 6000�� -->
+	<option name='max-recv-packet-disconnect-limit-for-summoner' value='1000'/>
+	<!-- [OPT] disconnect-limit�� �Ѿ��� �� ������ ������ ������ �� ���θ� �����Ѵ�. -->
+	<option name='max-recv-packet-disconnect-enabled' value='yes'/>
+	<!-- [OPT] ��Ŷ ���� ������ �ִ밪�� ���� �α׸� �����. -->
+	<option name='max-recv-packet-log-histogram' value='yes'/>
+	<!-- [OPT] �߸��� ��Ƽ �ʴ� ��Ŷ ���� ������, ���� �ð�(1��)���� �����Ѵ� -->
+	<option name='enable-max-recv-party-packet-check' value='yes'/>
+	<!-- [OPT] �����ð�(1��)�� �߸��� ��Ƽ �ʴ� ��Ŷ ���� ������, ������ �� �̻��� ��� ������ �����Ѵ�. �⺻��:�д� 30�� -->
+	<option name='max-recv-party-packet-disconnect-limit' value='20'/>
+	<!-- [OPT] disconnect-limit�� �Ѿ��� �� ������ ������ ������ �� ���θ� �����Ѵ�. -->
+	<option name='max-recv-party-packet-disconnect-enabled' value='yes'/>
+
+	<!-- ==== network : send ping from server to client, disconnect if no response ==== -->
+	<!-- [OPT] �������� ping�� ���� �ð��� ���� �� ���� ������. -->
+	<option name='enable-server-ping' value='yes'/>
+	<!-- [OPT] �������� ping�� ���� �ֱ��̴�. ������ ��(sec)�̴�. -->
+	<option name='server-ping-send-sec' value='60'/>
+	<!-- [OPT] ������ �� ��ŭ ping�� ���´µ�, nȸ �������̸� ������ �����Ѵ�. -->
+	<option name='server-ping-disconnect-count' value='3'/>
+	<!-- [OPT] disconnet-count�� �Ѿ��� ��, ������ ������ ������ �� ���θ� �����Ѵ� -->
+	<option name='server-ping-disconnect-no-packet-enabled' value='${server-ping-disconnect-no-packet-enabled}'/>
+	<!-- [OPT] Ŭ���̾�Ʈ�� �߸��� ping��Ŷ�� ������ ��, ������ ������ �� ���θ� �����Ѵ� -->
+	<option name='server-ping-disconnect-invalid-packet-enabled' value='${server-ping-disconnect-invalid-packet-enabled}'/>
+
+	<!-- ==== bot detect ==== -->
+	<!-- [OPT] 1�� ������ ���� ��Ŷ ������ �� ���� ������, bot���� �����Ѵ�. ��ȯ�� �̿��� ������ ����ȴ�. 'enable-max-recv-packet-check' �� y���� �����Ѵ�. -->
+	<option name='detect-bot-max-recv-packet-per-min' value='800'/>
+	<!-- [OPT] 1�� ������ ���� ��Ŷ ������ �� ���� ������, bot���� �����Ѵ�. ��ȯ�翡 ����ȴ�. 'enable-max-recv-packet-check' �� y���� �����Ѵ�. -->
+	<option name='detect-bot-max-recv-packet-per-min-for-summoner' value='900'/>
+	<!-- [OPT] �����ð�(detect-bot-max-move-packet-duration) ������ �̵� ��Ŷ ������ �� ���� ������, bot���� �����Ѵ�. Pc�� ����ȴ�. 'enable-max-recv-packet-check' �� y���� �����Ѵ�. -->
+	<option name='detect-bot-max-move-packet-count' value='100'/>
+	<!-- [OPT] �̵� ��Ŷ üũ �����ð�(millisecond) 'enable-max-recv-packet-check' �� y���� �����Ѵ�. �⺻�� �� �ּҰ� : 1000ms (1��) -->
+	<option name='detect-bot-max-move-packet-duration' value='1000'/>
+	<!-- [OPT] 1�� ������ ���ŵ� �߸��� ��Ƽ ��Ŷ ������ �� ���� ������, bot���� �����Ѵ�. 'enable-max-recv-party-packet-check' �� y���� �����Ѵ�. -->
+	<option name='detect-bot-max-party-packet-per-min' value='20'/>
+	<!-- [OPT] [BotScoringSystem] ���ŵ� ������ LobbyDaemon���� �����ϴ� event �� bot level�� ����� ���. default: no -->
+	<option name='bot-scoring-system-update-score-event-level-changed' value='no'/>
+	<!-- [OPT] [BotScoringSystem] ���ŵ� ������ LobbyDaemon���� �����ϴ� �ð� ����. ���� ��. 0�̸� ��� �ȵ�. default = 0 -->
+	<option name='bot-scoring-system-update-score-internal-sec' value='0'/>
+
+	<!-- ==== check to enter zone count ==== -->
+	<!-- [OPT] Ư�� ���� �����ð����� �󸶳� �����ϴ����� üũ�Ͽ� ������ �Ǻ��ϴ� ��ƾ �۵� ���� üũ -->
+	<option name='enable-check-to-enter-zone-count' value='yes'/>
+	<!-- [OPT] Ư�� ���� �����ð����� �󸶳� �����ϴ����� üũ�Ͽ� ������ �Ǻ��Ҷ� ����ϴ� �ð�, ���� �� -->
+	<option name='check-to-enter-zone-duration' value='3'/>
+	<!-- [OPT] Ư�� ���� �����ð����� �󸶳� �����ϴ����� üũ�Ͽ� ������ �Ǻ��Ҷ� ����ϴ� ���� Ƚ�� -->
+	<option name='check-to-enter-zone-limit-count' value='7'/>
+	<!-- [OPT] �� ���� ȸ�� üũ �� ���� ó���� �� ��ȣ -->
+	<option name='check-to-enter-zone-exception-1' value='7102'/>
+	<!-- [OPT] �� ���� ȸ�� üũ �� ���� ó���� �� ��ȣ -->
+	<option name='check-to-enter-zone-exception-2' value='0'/>
+	<!-- [OPT] �� ���� ȸ�� üũ �� ���� ó���� �� ��ȣ -->
+	<option name='check-to-enter-zone-exception-3' value='0'/>
+
+	<!-- ==== bot enter zone delay ==== -->
+	<!-- [OPT] ���� ��� EnterZone�� ���� ��Ű�� ��� �۵� ���� üũ -->
+	<option name='enable-bot-enter-zone-delay' value='yes'/>
+	<!-- [OPT] ���� ��� EnterZone�� ���� ��ų �ð� ����, ������ �� -->
+	<option name='bot-enter-zone-delay-time' value='30'/>
+
+	<!-- ==== daemon ping ==== -->
+	<!-- [OPT] daemon�� ping �˻縦 ������ ������ ����. default:yes -->
+	<option name='enable-daemon-ping' value='yes'/>
+	<!-- [OPT] daemon���� �ش� �ð� ���� ping��Ŷ�� ���� ������ �α׸� ����� �ɼǿ� ���� ���� ����. default:30000(30sec) -->
+	<option name='max-daemon-ping-interval' value='30000'/>
+	<!-- [OPT] daemon���� �ɼǿ� ������ �ð����� ping��Ŷ�� ���� �ʾ��� �� ���� ���� ����. default:yes -->
+	<option name='disconnect-when-daemon-ping-timeout' value='yes'/>
+
+	<!-- ==== move check ==== -->
+	<!-- [OPT] �̵��� z���� speed�˻縦 �� �� ����. �ʹ� ������ �����̸� walk fail�� �߻��Ѵ�. �߱����� �߻��� ��õ ���� ���� ���ؼ� ���� �ڵ��̴�. default:no -->
+	<option name='move-check-z-speed' value='yes'/>
+	<!-- [OPT] ���� �� �ִ� ���̸� 100su����, �Ϲ� ������ 25su, ���� ������ 100su�� �����Ѵ�. �߱����� �߻��� ��õ ���� ���� ���ؼ� ���� �ڵ��̴�. default:no -->
+	<option name='move-check-jump-max' value='yes'/>
+	<!-- [OPT] ���� �� ���¸� Ȯ���ؼ�, ���߿��� ��� �����ϴ� ���� ���´�. �߱����� �߻��� ��õ ���� ���� ���ؼ� ���� �ڵ��̴�. default:no -->
+	<option name='move-check-jump-state' value='yes'/>
+	<!-- [OPT] �̵��� z���� �ִ� speed ������ su/s, 1su = 8cm. default:210  = 210su/s = 16.8m/s -->
+	<option name='move-max-z-speed' value='210'/>
+
+	<!-- ==== debug option ==== -->
+	<!-- [OPT] Effect release�� �ϴ� ��� ����(0 : ������ ����, 1 : PassiveEffect Invoke�� addref, delref, 2 : EffectContainer�� detach�� Effect�� ��Ƽ� �ѹ��� delref) -->
+	<option name='effect-release-type' value='2'/>
+	<!-- [OPT] pc�� ���İ��� NPC ��ó�� �ִ��� üũ���� ����. monkey tester���� test�� �� n���� �����ϰ� �׽�Ʈ�� ��. -->
+	<option name='guild-npc-check-enable' value='yes'/>
+	<!-- [OPT] ��� ���� ���� ���� �ð��� ������ ������ ������Ų��. �⺻���� n, y�� ��� �Ʒ� fixed-make-time ���� �����Ǿ� �־�� �Ѵ�. -->
+	<option name='guild-craft-fixed-make-time-enable' value='no'/>
+	<!-- [OPT] ��� ���� ���� ���� �ð��� ������ ������ �����Ѵ�. ������ sec�̸� 30�� �̻��̾�� �Ѵ�. -->
+	<option name='guild-craft-fixed-make-time' value='30'/>
+	<!-- [OPT] ��� ���ĺ� Ŀ���͸����� ���� �ð��� ������ ������ ������Ų��. �⺻���� n, y�� ��� �Ʒ� fixed-make-time ���� �����Ǿ� �־�� �Ѵ�. -->
+	<option name='guild-uniform-fixed-make-time-enable' value='no'/>
+	<!-- [OPT] ��� ���ĺ� Ŀ���͸����� ���� �ð��� ������ ������ �����Ѵ�. ������ sec�̸� 30�� �̻��̾�� �Ѵ�. -->
+	<option name='guild-uniform-fixed-make-time' value='30'/>
+	<!-- [OPT] ���� �� ���� ������ ���� ��� ������� ����. default no -->
+	<option name='guild-post-charge-discount-enable' value='yes'/>
+	<!-- [OPT] ���Ŀ� �� �̵��� �� ���� �ǽð� broadcast ����. default no -->
+	<option name='guildmember-transit-zone-noti-enable' value='no'/>
+	<!-- [OPT] ���ӸӴ� ���� �α� -->
+	<option name='money-log-enable' value='no'/>
+	<!-- [OPT] �Ͱ˻�(���˻�) ����ϰ� �� ������ ���� ����, default�� no. -->
+	<option name='sword-master-enable' value='yes'/>
+	<!-- [OPT] �ּ��� ����ϰ� �� ������ ���� ����, default�� no. -->
+	<option name='warlock-enable' value='yes'/>
+	<!-- [OPT] ��ǻ� ����ϰ� �� ������ ���� ����, default�� no. -->
+	<option name='soul-fighter-enable' value='yes'/>
+	<!-- [OPT] �ݻ� ����ϰ� �� ������ ���� ����, default�� no. -->
+	<option name='shooter-enable' value='yes'/>
+	<!-- [OPT] ���� ����ϰ� �� ������ ���� ����, default�� no. -->
+	<option name='warrior-enable' value='yes'/>
+	<!-- [OPT] �û� ����ϰ� �� ������ ���� ����, default�� no. -->
+	<option name='archer-enable' value='no'/>
+	<!-- [OPT] Effect Attribute ��ø�����ϰ� ������ ���� ������ ������ ���� ����, default�� no. -->
+	<option name='enable-effect-attribute-renewal' value='yes'/>
+	<!-- [OPT] GameData�� ������ Effect BroadcastType�� ����� ������ ����. default yes. ���̺� ���� �߻��� ��� ����. -->
+	<option name='enable-effect-broadcast-type' value='yes'/>
+	<!-- [OPT] pc�� timer/effects/regen/exhaustion���� so��ü�� ���� ���踦 ��������� �ΰ� ������ ó�� -->
+	<option name='check-so-lifecycle-with-pc' value='yes'/>
+	<!-- [OPT] zso post ���� �ÿ� �޸� ���� ���� ����. !!����!! CBT3������ �⺻���� no�θ� �����մϴ�. -->
+	<option name='zso-post-fail-refobj-bug-fix' value='no'/>
+	<!-- [OPT] Cache�� Insert, Delete packet ������ �κп� Debug Log ������ ����, default�� yes -->
+	<option name='insert-delete-cache-log-enable' value='yes'/>
+	<!-- [OPT] pc spawn�� leave world�� priority�� �ٸ� system action ���� ��� �����, default�� yes -->
+	<option name='pcspawn-and-leaveworld-priority-high-enable' value='yes'/>
+	<!-- [OPT] RecycleGroup 1�� üũ�� �� ������ �� Margin Time. msec ���� -->
+	<option name='recycle-group-1-margin-time' value='100'/>
+	<!-- [OPT] Script�� ���ؼ� �ߵ��� Warp�� ������ Warp�Ǵ� ���, default�� yes -->
+	<option name='warp-force-by-warp-reaction-enable' value='yes'/>
+	<!-- [OPT] ����� �α��� �ÿ� reserved�� economy�ǿ� ���ؼ� �ڵ� ���� ��� ���, default�� yes -->
+	<option name='recovery-reserved-economy-data-when-login' value='yes'/>
+	<!-- [OPT] pc/zone�� �����Ǹ� �����ϰ�, pc/zone�� �Ҹ�Ǹ� ���ŵǴ� ����� �����. ���������ڰ� 0�� �� �� ��Ͽ� ���� �ִ� pc/zone�� ���� leak�̴�. default�� no -->
+	<option name='object-leak-list-enable' value='${object-leak-list-enable}'/>
+	<!-- [OPT] DuelSeason�� �ٲ�� �Ǹ� ������� duel-rating-score�� duelScore�� History Table�� �ű�� �ʱ�ȭ ���ִ� ��ƾ�� Ȱ��ȭ, default�� yes -->
+	<option name='change-duel-season-enable' value='yes'/>
+	<!-- [OPT] ĳ���� ���� �� or �� ���� ���� ��, �κ�κ��� rating score�� 0���� �޴� ��쿡 ���� �ش� ������ default rating score�� ����, default=130000 -->
+	<option name='default-duel-rating-score' value='130000'/>
+	<!-- [OPT] PartyBattleSeason�� �ٲ�� �Ǹ� ������� PartyBattleScore�� History Table�� �ű�� �ʱ�ȭ ���ִ� ��ƾ�� Ȱ��ȭ, default�� yes -->
+	<option name='change-party-battle-season-enable' value='yes'/>
+	<!-- [OPT] ���� ������ ����Ǿ���, �κ�κ��� rating score�� 0���� �޴� ��쿡 ���� ĳ���Ͱ� EnterWorld�� ������ �ش� ������ default rating score�� ����, default=130000 -->
+	<option name='default-party-battle-rating-score' value='130000'/>
+	<!-- [OPT] ����â�� ScheduleNumber�� �ٲ�� �Ǹ� ����â���� Slot Count�� RuleConfig�� ������ default ������ �ʱ�ȭ ���ִ� ��ƾ�� Ȱ��ȭ, default�� no -->
+	<option name='change-random-store-schedule-enable' value='yes'/>
+	<!-- [OPT] CacheDaemon���� item�� insert�� delete�� ���� ���� �ð��� �α׷� ���⵵�� ����, default�� no -->
+	<option name='cache-sync-delay-log-enable' value='${cache-sync-delay-log-enable}'/>
+	<!-- [OPT] GameDaemon���� ����ϴ� ä��(�ӼӸ�, ��ä��)�� ���հ��ӷα׿� ������ ������ ���� ����(default�� no) -->
+	<option name='chatting-log-enable' value='yes'/>
+	<!-- [OPT] cache daemon channel ������ IoWorker::GetId() �� �����ϴ� ���� �ƴ϶�, session id�� �����Ѵ�. (default�� no) -->
+	<option name='select-cache-daemon-channel-by-sessionid' value='yes'/>
+	<!-- [OPT] Npc�� ���� �߿� ���� üũ(Phase��ȯ, DeadZoneSkill ���)�� �ؼ� ������ �������� ���� ���� (�⺻���� no) -->
+	<option name='check-npc-chase-stop-condition-enable' value='no'/>
+	<!-- [OPT] ��ũ��Ʈ�� Npc�� ���� ��ų ��, ���� ������ ���� ���(�⺻���� no) -->
+	<option name='trace-spawn-npc-reaction-enable' value='${trace-spawn-npc-reaction-enable}'/>
+	<!-- [OPT] path finder �޸� ���� ����� �� -->
+	<option name='reduce-path-finder-enable' value='yes'/>
+	<!-- [OPT] yes�� ������ �� �̵��� NP�� ģ�� ���� ������ ������Ʈ �Ѵ�(�⺻���� no) -->
+	<option name='friend-noti-location-enable' value='yes'/>
+	<!-- [OPT] �������� yes�� ������ �� �̵��� NP�� ģ�� ���� ������ ĳ���͸�, ������̵� �߰��Ͽ� ������Ʈ �Ѵ�(�⺻���� no) -->
+	<option name='friend-noti-location-only-korea-enable' value='yes'/>
+	<!-- [OPT] yes�� ������ FriendMessage�� �����Ѵ�(�⺻���� no) -->
+	<option name='friend-message-enable' value='no'/>
+	<!-- [OPT] yes�� ������ Npc�� ���� ��� Action ������ �Ұ����� ��� �����α� ��ȭ(�⺻���� no) -->
+	<option name='npc-action-caster-is-not-in-zone-trace-enable' value='yes'/>
+	<!-- [OPT] ������ �Ⱓ�Ӽ� ���뿩�� (�⺻���� no) -->
+	<option name='time-limit-item-enable' value='yes'/>
+	<!-- [OPT] yes�� ������ randomValue�Լ��� randomValue2�� ��ü�ȴ� (�⺻���� no) -->
+	<option name='use-randomvalue2-instead-of-randomvalue' value='yes'/>
+	<!-- [OPT] ���� Ǯ�� �ִ� ��� ���� �ƴ� Ŭ���̾�Ʈ ���ǿ� PAGE_READONLY�� �ɾ, �޸� ���Ⱑ �߻����� ��� exception�� ������ ��(�⺻���� no) -->
+	<option name='use-unused-client-session-read-only' value='no'/>
+	<!-- [OPT] yes�� ������ session-channel(user)-pc ���ε� ������ ���� ������ �ణ ������Ų��. (�⺻���� no) -->
+	<option name='use-channel-delayed-release' value='yes'/>
+	<!-- [OPT] EnterList�� Pc�� ���ٸ� InZone��Ŷ�� ������ �ʴ´�. (�⺻���� no) -->
+	<option name='do-not-make-inzone-packet-when-no-pc-enter' value='${do-not-make-inzone-packet-when-no-pc-enter}'/>
+	<!-- [OPT] Creature::SetZone, Creature::EnterZone���� GameObjectCounter�� EffectContainer�� Serializer�� �߸��Ǿ� ������ crash�α׸� �����. (�⺻���� yes) -->
+	<option name='crash-log-invalid-serializer' value='no'/>
+	<!-- [OPT] npc�� ��ġ�� zone�� pc�� ���� ���� detect�� �����ϵ��� ���ִ� �ɼ�(�⺻���� no) -->
+	<option name='npc-detect-only-if-pc-exist-in-zone' value='yes'/>
+	<!-- [OPT] npc�� detect�ϴ� interval(�ð� ����) ����(�⺻���� 1000(ms)). �׽�Ʈ�� ���� BrainConst::DEFAULT_NPC_DETECT_INTERVAL ��� ��� ���̸� �׽�Ʈ�� ������ DEFAULT_NPC_DETECT_INTERVAL�� ����ϵ��� rollback ���� -->
+	<option name='npc-detect-interval' value='1500'/>
+	<!-- [OPT] ��Ź ȭ�� �ŷ��� ���(�Ǹ�) ���� ���� ���� ����. (�⺻���� no) -->
+	<option name='auction-escrow-limit-level-apply' value='no'/>
+	<!-- [OPT] ��Ź ȭ�� �ŷ��� ���(�Ǹ�) ���� ����. (�⺻���� 16) -->
+	<option name='auction-escrow-limit-level' value='16'/>
+	<!-- [OPT] ��Ź ȭ�� �ŷ��� ���(����) ���� ���� ���� ����. (�⺻���� no) -->
+	<option name='auction-escrow-bid-limit-level-apply' value='no'/>
+	<!-- [OPT] ��Ź ȭ�� �ŷ��� ���(����) ���� ����. (�⺻���� 16) -->
+	<option name='auction-escrow-bid-limit-level' value='16'/>
+	<!-- [OPT] ContentQuota ��� on/off -->
+	<option name='enable-content-quota' value='yes'/>
+	<!-- [OPT] ��Ƽ waiting member ���� ���� ���� ���� ���� ����.(�⺻���� no) -->
+	<option name='party-waiting-bug-fix' value='yes'/>
+	<!-- [OPT] �ɸ��� ���� Ȥ�� ���� ����� �������� validation üũ ����.(�⺻���� yes) -->
+	<option name='enable-check-character-appearance' value='yes'/>
+	<!-- [OPT] ���� �Ұ����ϰ�, brain�� ���ų� citizen�� npc�� effect�� ����ؼ� �̵���Ű�� ��� �α׸� ����. (�⺻���� no) -->
+	<option name='log-npc-move-by-effect-enable' value='yes'/>
+	<!-- [OPT] y�� ������ ���, zone�� max-npc�� �Ѵ� npc�� spawn�� ��쿡 ������ crash�ȴ�. (�⺻���� no) -->
+	<option name='crash-zone-npc-overflow' value='yes'/>
+	<!-- [OPT] y�� ������ ���, sync define�� readonly�� ����� property sync ���� field�� �����ϰ� �Ѵ�. �ش� ��ƾ�� �޸𸮰� ������ ���� ��Ƴ��� ���ؼ��̴�. (�⺻���� no) -->
+	<option name='use-syncdefine-readonly' value='yes'/>
+	<!-- [OPT] y�� ������ ���, ��� action�� ���ؼ� ������ �޸� Ǯ���� �޸𸮸� �Ҵ��Ѵ�. (�⺻���� y) -->
+	<option name='use-action-memory-pool' value='yes'/>
+	<!-- [OPT] y�� ������ ���, ��� action�� ���ؼ� �Ҵ��� �޸𸮸� ������ ��� freelist�� ���� �� readonly�� �����ؼ� �ִ´�.(�⺻���� y) -->
+	<option name='use-action-memory-pool-readonly-free-mem' value='yes'/>
+	<!-- [OPT] skill latency trace�� ���� �α� ��� ����(service�������� ���常 ����) -->
+	<option name='skill-latency-trace-log-enable' value='no'/>
+	<!-- [OPT] ModifyRecycleTime Effect�� ���� Class2 Recycle Group ó������ ���� ���� (�⺻���� no) -->
+	<option name='enable-to-handle-class2-by-modify-recycle-time-effect' value='yes'/>
+
+	<!-- ==== market register option ==== -->
+	<!-- [OPT] y�� ������ ���, ����� ��� �� ������ ������ ���� �߰� ���������� �����Ѵ�. -->
+	<option name='enable-market-register-extra-tax' value='yes'/>
+
+	<!-- ==== tencent second password ==== -->
+	<!-- [OPT] tencent second password�� ����� ���ΰ�. Default no -->
+	<option name='tencent-secondpassword-enable' value='no'/>
+	<!-- [OPT] tencent second password type for np -->
+	<option name='tencent-secondpassword-type' value='3'/>
+
+	<!-- ==== debugging log ==== -->
+	<!-- [OPT] [Debugging Log] ������ �����α� ��Ͽ���, (�⺻���� yes) -->
+	<option name='debugging-log-common-trace-log' value='yes'/>
+	<!-- [OPT] [Debugging Log] Link���� �����α� ��Ͽ���, (�⺻���� no) -->
+	<option name='debugging-log-link-problem-trace-log' value='no'/>
+
+	<!-- ==== ranking option ==== -->
+	<!-- [OPT] [��ŷ] ���󸮽�Ʈ ���� �ֱ�. default=3600sec -->
+	<option name='ranking-reward-list-refresh-interval' value='3600'/>
+	<!-- [OPT] [��ŷ] ���� ���� ����Ʈ ó�� �ֱ�. default=10min -->
+	<option name='ranking-take-reward-interval' value='600000'/>
+	<!-- [OPT] [��ŷ] ���� ���� ���ɽ� ��ȸ ó�� ���� Ƚ��. default=100 -->
+	<option name='ranking-take-reward-once-limit-count' value='100'/>
+	<!-- [OPT] [��ŷ] TImeAttack�� ����� ��, üũ�� MaxTime. DB ���� �� ó���� RemainTime���� ��.(MaxTime-�ҿ�ð�). default=36000000, ���� 1/100sec. 100�ð�. -->
+	<option name='ranking-time-attack-max-time' value='36000000'/>
+
+	<!-- ==== Configuration for logs ==== -->
+	<!-- [OPT] allow client ip address in logs -->
+	<option name='allow-client-ip-address-in-logs' value='yes'/>
+
+</config>

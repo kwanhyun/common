@@ -9,7 +9,7 @@
 	<!-- [REQ] full log path -->
 	<option name='log-path' value='E:\Service\Gamedaemon\'/>
 	<!-- [REQ] full data path  -->
-	<option name='data-path' value='#{cert_path}#'/>
+	<option name='data-path' value='D:\Service\Gamedaemon\data\GameData_Korea_Korean.zip'/>
 
 	<!-- ==== certification ==== -->
 	<!-- [REQ] certification file path -->
