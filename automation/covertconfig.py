@@ -1,12 +1,16 @@
 from shutil import copyfile
 import datetime
 import re
+import os
 
 now_time=datetime.datetime.now()
 dt=now_time.strftime('%Y%m%d_%H%M%S')
 
+currentDir = os.path.dirname(os.path.abspath(__file__))
+bnsBackupDir_Main = currentDir+"\\BackupDir\\"
+
 #backup config file
-copyfile("server_config_test.xml","server_config_test_.xml_"+dt)
+copyfile("server_config_test.xml",bnsBackupDir_Main+"server_config_test_.xml_"+dt)
 
 #함수를 만들어서.. 
 
