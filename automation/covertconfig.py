@@ -8,7 +8,7 @@ dt=now_time.strftime('%Y%m%d_%H%M%S')
 
 currentDir = os.path.dirname(os.path.abspath(__file__))
 bnsBackupDir_Main = currentDir+"\\BackupDir\\"
-
+ConfigDir_Main = currentDir+"\\Config_Value\\"
 #backup config file
 copyfile("server_config_test.xml",bnsBackupDir_Main+"server_config_test_.xml_"+dt)
 
@@ -16,9 +16,10 @@ copyfile("server_config_test.xml",bnsBackupDir_Main+"server_config_test_.xml_"+d
 
 def convert_valiable(str_info):
     origin = str_info
-    pattern  = r"^.*#{cert_path}#.*$"
+    pattern  = r"^.*#{.*}#.*$"
     if re.match(pattern,origin):
         print("good"+origin)
+
         return origin
     else:
         return origin
@@ -32,10 +33,18 @@ with open("server_config_test.xml","rt",encoding=None) as f:
             f.close()
     f.close()
 
-
+dictionary_config = {}
+with open(ConfigDir_Main+"values.txt") as f:
+    for line in f:
+        (key,val) = line.replace(" ","") .split('=')
+        dictionary_config[str(key)]=val
+        #print(dictionary_config['#{cert_path}#'])
 
 #Send-Email
 
+#def parsing_config(str_info):
+#    origin_val = str_info
+#    m = re.search()
 
 
 
