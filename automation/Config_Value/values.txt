@@ -1,2 +1,3 @@
-#{cert_path}# = 'D:\Services\CertPath\aa.txt'
-#{test_path}# = 'testtest'
+#{cert_path}# = D:\Services\CertPath\aa.txt
+#{test_path}# = testtest
+#{aaaa_path}# = aaaaaaa
