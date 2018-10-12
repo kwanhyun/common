@@ -1,0 +1,9 @@
+#ServerConInfo
+server.mainserver = {bs-game-01, bs-game-02} 
+server.npcserver = {bs-game-01, bs-game-02}
+server.cacheserver = {bs-gameDB-01, bs-gameDB-02}
+
+#ConfigConInfo
+conf.mainserver = server_config_test.xml
+conf.npcserver = server_config_test2.xml
+conf.cacheserver = server_config_test3.xml

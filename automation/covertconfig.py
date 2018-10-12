@@ -7,8 +7,38 @@ now_time=datetime.datetime.now()
 dt=now_time.strftime('%Y%m%d_%H%M%S')
 
 currentDir = os.path.dirname(os.path.abspath(__file__))
-bnsBackupDir_Main = currentDir+"\\BackupDir\\"
-ConfigDir_Main = currentDir+"\\Config_Value\\"
+Backupdir = "BackupDir"
+ConfigDir = "Config"
+MasterFileDir = "MasterFile"
+OutPutDataDir = "OutputData"
+bnsBackupDir_Main = currentDir+"\\"+Backupdir+"\\"
+ConfigDir_Main = currentDir+"\\"+ConfigDir+"\\"
+MasterFileDir_Main = currentDir+"\\"+MasterFileDir+"\\"
+OutPutDateDir_Main = currentDir+"\\"+OutPutDataDir+"\\"
+ServerConInfo = r"^server.*$"
+ConfigConInfo = r"^conf.*$"
+
+#CreateWorkingDir
+folder = []
+config = {}
+with open(ConfigDir_Main+"meta.txt") as f:
+    for line in f:
+        if re.match(ServerConInfo,line):
+            par1 = line.rstrip("\n").replace(" ","").split('=')
+            par2 = par1[1].rstrip("\n").replace("{","").replace("}","").split(',')
+            for value in par2:
+                folder.append(value)
+                if not os.path.isdir(MasterFileDir_Main+value):
+                    os.mkdir(MasterFileDir_Main+value)
+                if not os.path.isdir(OutPutDateDir_Main+value):
+                    os.mkdir(OutPutDateDir_Main+value)
+        if re.match(ConfigConInfo,line):
+            par1 = line.rstrip("\n").replace(" ","").split('=')
+            par2 = par1[1].rstrip("\n").replace(" ","")
+            config[(par1[0])]=par1[1]
+f.close()
+print(config)
+print(folder)
 
 #backup config file
 copyfile("server_config_test.xml",bnsBackupDir_Main+"server_config_test_.xml_"+dt)
@@ -20,6 +50,7 @@ def get_config_list():
         for line in f:
             (key,val) = line.rstrip("\n").replace(" ","").split('=')
             dictionary_config[str(key)]=val
+    f.close()
     for key, value in dictionary_config.items():
         print(key+' is ' + value)
 
@@ -46,3 +77,4 @@ with open("server_config_test.xml","rt",encoding=None) as f:
             f.write(new_line)
             f.close()
     f.close()
+f.close()
